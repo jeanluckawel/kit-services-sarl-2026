@@ -10,8 +10,7 @@
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
-    <!--end::Accessibility Meta Tags-->
-    <!--begin::Primary Meta Tags-->
+
     <meta name="title" content="KIT SERVICES SARLe" />
     <meta name="author" content="Jean Luc Kawel" />
     <meta
@@ -65,109 +64,12 @@
                         <i class="bi bi-list"></i>
                     </a>
                 </li>
-                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
-                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
+                <li class="nav-item d-none d-md-block"><a href="#" class="nav-link"></a></li>
             </ul>
             <!--end::Start Navbar Links-->
             <!--begin::End Navbar Links-->
             <ul class="navbar-nav ms-auto">
-                <!--begin::Navbar Search-->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="bi bi-search"></i>
-                    </a>
-                </li>
-                <!--end::Navbar Search-->
-                <!--begin::Messages Dropdown Menu-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-bs-toggle="dropdown" href="#">
-                        <i class="bi bi-chat-text"></i>
-                        <span class="navbar-badge badge text-bg-danger">3</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                        <a href="#" class="dropdown-item">
-                            <!--begin::Message-->
-                            <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <img
-                                        src="../assets/img/user1-128x128.jpg"
-                                        alt="User Avatar"
-                                        class="img-size-50 rounded-circle me-3"
-                                    />
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-end fs-7 text-danger"
-                                        ><i class="bi bi-star-fill"></i
-                                            ></span>
-                                    </h3>
-                                    <p class="fs-7">Call me whenever you can...</p>
-                                    <p class="fs-7 text-secondary">
-                                        <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
-                                    </p>
-                                </div>
-                            </div>
-                            <!--end::Message-->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!--begin::Message-->
-                            <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <img
-                                        src="../assets/img/user8-128x128.jpg"
-                                        alt="User Avatar"
-                                        class="img-size-50 rounded-circle me-3"
-                                    />
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h3 class="dropdown-item-title">
-                                        John Pierce
-                                        <span class="float-end fs-7 text-secondary">
-                          <i class="bi bi-star-fill"></i>
-                        </span>
-                                    </h3>
-                                    <p class="fs-7">I got your message bro</p>
-                                    <p class="fs-7 text-secondary">
-                                        <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
-                                    </p>
-                                </div>
-                            </div>
-                            <!--end::Message-->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!--begin::Message-->
-                            <div class="d-flex">
-                                <div class="flex-shrink-0">
-                                    <img
-                                        src="../assets/img/user3-128x128.jpg"
-                                        alt="User Avatar"
-                                        class="img-size-50 rounded-circle me-3"
-                                    />
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-end fs-7 text-warning">
-                          <i class="bi bi-star-fill"></i>
-                        </span>
-                                    </h3>
-                                    <p class="fs-7">The subject goes here</p>
-                                    <p class="fs-7 text-secondary">
-                                        <i class="bi bi-clock-fill me-1"></i> 4 Hours Ago
-                                    </p>
-                                </div>
-                            </div>
-                            <!--end::Message-->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                    </div>
-                </li>
-                <!--end::Messages Dropdown Menu-->
-                <!--begin::Notifications Dropdown Menu-->
+
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-bs-toggle="dropdown" href="#">
                         <i class="bi bi-bell-fill"></i>
@@ -211,7 +113,7 @@
                             class="user-image rounded-circle shadow"
                             alt="User Image"
                         />
-                        <span class="d-none d-md-inline">Alexander Pierce</span>
+                        <span class="d-none d-md-inline">Jean Luc Kawel</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                         <!--begin::User Image-->
@@ -222,21 +124,13 @@
                                 alt="User Image"
                             />
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2023</small>
+                                Jean Luc Kawel
+                                <small>2026</small>
                             </p>
                         </li>
                         <!--end::User Image-->
                         <!--begin::Menu Body-->
-                        <li class="user-body">
-                            <!--begin::Row-->
-                            <div class="row">
-                                <div class="col-4 text-center"><a href="#">Followers</a></div>
-                                <div class="col-4 text-center"><a href="#">Sales</a></div>
-                                <div class="col-4 text-center"><a href="#">Friends</a></div>
-                            </div>
-                            <!--end::Row-->
-                        </li>
+
                         <!--end::Menu Body-->
                         <!--begin::Menu Footer-->
                         <li class="user-footer">

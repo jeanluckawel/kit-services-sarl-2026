@@ -89,7 +89,7 @@
                 </ul>
             </li>
 
-            <li class="nav-header">EXAMPLES</li>
+            <li class="nav-header">PAYROLLS</li>
         </ul>
 
     </nav>
