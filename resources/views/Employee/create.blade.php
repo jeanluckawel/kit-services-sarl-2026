@@ -250,7 +250,7 @@
                                        required style="border-radius:0;">
                             </div>
 
-                            <!-- End Contract Date (conditionnel) -->
+                            <!-- End Contract Date -->
                             <div class="col-md-6 d-none" id="endContractWrapper">
                                 <label class="form-label fw-bold">
                                     End Contract Date <span class="text-danger">*</span>
@@ -492,8 +492,6 @@
 
 
 
-
-
                 <div class="mt-4 text-end">
                     <button type="submit" class="btn btn-primary">Save </button>
                     <button type="reset" class="btn btn-secondary">Cancel </button>
@@ -541,7 +539,7 @@
             childIndex++;
         });
 
-        // Remove child row
+
         document.addEventListener('click', function(e){
             if(e.target && e.target.classList.contains('removeChild')){
                 e.target.closest('.child-row').remove();
@@ -550,7 +548,7 @@
 
 
 
-        let dependantIndex = 1; // start from 1 because 0 already exists
+        let dependantIndex = 1;
         document.getElementById('addDependant').addEventListener('click', function() {
             const container = document.getElementById('dependantsContainer');
 
@@ -581,13 +579,13 @@
             container.appendChild(newRow);
             dependantIndex++;
 
-            // Add remove functionality
+
             newRow.querySelector('.removeDependant').addEventListener('click', function() {
                 newRow.remove();
             });
         });
 
-    //     == cuntry
+    //     == country
 
         $(document).ready(function() {
             const $select = $('#country');
@@ -597,13 +595,13 @@
                 .then(data => {
                     if (!data.error) {
 
-                        // Ajouter manuellement la RDC avec son drapeau
+
                         const rdcOption = new Option("RD Congo", "Democratic Republic of the Congo", false, false);
                         $(rdcOption).attr('data-flag', "https://flagcdn.com/w20/cd.png");
                         $select.append(rdcOption);
 
                         data.data.forEach(country => {
-                            // On saute "Democratic Republic of the Congo" pour éviter le doublon
+
                             if(country.name === "Democratic Republic of the Congo") return;
 
                             const option = new Option(country.name, country.name, false, false);
@@ -611,7 +609,7 @@
                             $select.append(option);
                         });
 
-                        // Initialiser Select2 avec drapeaux
+
                         $select.select2({
                             templateResult: formatCountry,
                             templateSelection: formatCountry,
@@ -621,7 +619,7 @@
                 })
                 .catch(error => console.error('Error fetching countries:', error));
 
-            // Fonction pour afficher le drapeau à côté du nom
+
             function formatCountry(country) {
                 if (!country.id) return country.text;
                 const flagUrl = $(country.element).attr('data-flag');
@@ -636,8 +634,6 @@
                 return country.text;
             }
         });
-
-
 
 
      // company
