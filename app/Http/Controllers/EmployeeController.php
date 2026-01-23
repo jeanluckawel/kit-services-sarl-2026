@@ -37,7 +37,7 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        // 1️⃣ Employee validation
+
         $validated = $request->validate([
             'first_name' => 'required|string',
             'last_name'  => 'required|string',
@@ -50,7 +50,7 @@ class EmployeeController extends Controller
             'photo'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // 2️⃣ Address validation
+
         $addressData = $request->validate([
             'employee_number' => 'required|string',
             'employee_city'   => 'required|string',
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
             'emergency_phone' => $addressData['employee_emergency_phone'] ?? null,
         ];
 
-        // 3️⃣ Company validation
+
         $companyData = $request->validate([
             'job_title' => 'required|string',
             'department'=> 'required|string',
@@ -89,7 +89,7 @@ class EmployeeController extends Controller
             'employee_type' => 'required|in:Full Time,Part Time',
         ]);
 
-        // 4️⃣ Salary validation
+
         $salaryRequest = $request->validate([
             'salary_base_salary' => 'nullable|numeric',
             'salary_category'    => 'nullable|string',
@@ -103,7 +103,7 @@ class EmployeeController extends Controller
             'currency'    => $salaryRequest['salary_currency'],
         ];
 
-        // 5️⃣ Emergency validation
+
         $emergencyRequest = $request->validate([
             'emergency_relationship' => 'nullable|string',
             'emergency_full_name'    => 'nullable|string',
@@ -117,53 +117,53 @@ class EmployeeController extends Controller
             'address'      => $emergencyRequest['emergency_address'] ?? null,
         ];
 
-        // 6️⃣ Children validation (outside $emergencyData)
+
         $childrenRequest = $request->validate([
             'children.*.full_name'     => 'required|string',
             'children.*.date_of_birth' => 'required|date',
             'children.*.gender'        => 'required|in:M,F',
         ]);
 
-        // 7️⃣ Photo upload
+
         if ($request->hasFile('photo')) {
             $validated['photo'] = $request->file('photo')->store('photos', 'public');
         }
 
-        // 8️⃣ Database Transaction
+
         DB::transaction(function () use ($validated, $addressData, $companyData, $salaryData, $emergencyData, $childrenRequest) {
 
-            // Create employee_id
+
             $latest = Employee::latest('id')->first();
             $nextId = $latest ? $latest->id + 1 : 1;
             $validated['employee_id'] = 'KAM_KIT' . str_pad($nextId, 3, '0', STR_PAD_LEFT);
             $validated['status'] = 1;
 
-            // Create Employee
+
             $employee = Employee::create($validated);
 
-            // Create Address
+
             Address::create(array_merge($addressData, [
                 'employee_id' => $employee->employee_id,
             ]));
 
-            // Create Company
+
             Company::create(array_merge($companyData, [
                 'employee_id' => $employee->employee_id,
             ]));
 
-            // Create Salary
+
             Salary::create(array_merge($salaryData, [
                 'employee_id' => $employee->employee_id,
             ]));
 
-            // Create Emergency
+
             if (array_filter($emergencyData)) {
                 Emergency::create(array_merge($emergencyData, [
                     'employee_id' => $employee->employee_id,
                 ]));
             }
 
-            // Create Children
+
             if (!empty($childrenRequest['children'])) {
                 foreach ($childrenRequest['children'] as $child) {
                     Children::create([
