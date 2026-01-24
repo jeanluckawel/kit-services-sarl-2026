@@ -7,17 +7,7 @@
     <div class="app-content-header">
 
         <div class="container-fluid">
-
-            <div class="row">
                 <div class="col-sm-6"><h3 class="mb-0">Dashboard </h3></div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-end">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard v2</li>
-                    </ol>
-                </div>
-            </div>
-
         </div>
 
     </div>
@@ -28,6 +18,23 @@
         <div class="container-fluid">
             <!-- Info boxes -->
             <div class="row">
+
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                  <span class="info-box-icon text-bg-warning shadow-sm">
+                    <i class="bi bi-people-fill"></i>
+                  </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Employee{{ $employeeCount > 1 ? 's' : '' }}  </span>
+                            <span class="info-box-number"> {{ number_format((int) $employeeCount) ?? 'N/A' }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
                   <span class="info-box-icon text-bg-primary shadow-sm">
@@ -74,21 +81,6 @@
                     </div>
                     <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                  <span class="info-box-icon text-bg-warning shadow-sm">
-                    <i class="bi bi-people-fill"></i>
-                  </span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">New Members</span>
-                            <span class="info-box-number">2,000</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
             </div>
 
         </div>

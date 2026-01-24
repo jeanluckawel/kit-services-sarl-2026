@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('employee_id');
 
-            $table->string('relationship')->nullable();
+            $table->enum('relationship',['Father','Mother','Spouse','Brother','Sister','Mr','Mrs','Dr'])->nullable();
             $table->string('full_name')->nullable();
 
             $table->string('phone')->nullable();

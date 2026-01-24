@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee\Address;
 use App\Models\Employee\Children;
 use App\Models\Employee\Company;
+use App\Models\Employee\Dependant;
 use App\Models\Employee\Emergency;
 use App\Models\Employee\Employee;
 use App\Models\Employee\Salary;
@@ -124,13 +125,21 @@ class EmployeeController extends Controller
             'children.*.gender'        => 'required|in:M,F',
         ]);
 
+        $dependantsRequest = $request->validate([
+            'dependants'                => 'nullable|array',
+            'dependants.*.relationship' => 'required|string',
+            'dependants.*.full_name'    => 'required|string',
+            'dependants.*.phone'        => 'nullable|string',
+            'dependants.*.address'      => 'nullable|string',
+        ]);
+
 
         if ($request->hasFile('photo')) {
             $validated['photo'] = $request->file('photo')->store('photos', 'public');
         }
 
 
-        DB::transaction(function () use ($validated, $addressData, $companyData, $salaryData, $emergencyData, $childrenRequest) {
+        DB::transaction(function () use ($validated, $addressData, $companyData, $salaryData, $emergencyData, $childrenRequest, $dependantsRequest) {
 
 
             $latest = Employee::latest('id')->first();
@@ -174,6 +183,19 @@ class EmployeeController extends Controller
                     ]);
                 }
             }
+
+            if (!empty($dependantsRequest['dependants'])) {
+                foreach ($dependantsRequest['dependants'] as $dependant) {
+                    Dependant::create([
+                        'employee_id' => $employee->employee_id,
+                        'relationship'=> $dependant['relationship'],
+                        'full_name'   => $dependant['full_name'],
+                        'phone'       => $dependant['phone'] ?? null,
+                        'address'     => $dependant['address'] ?? null,
+                    ]);
+                }
+            }
+
         });
 
         return redirect()
@@ -186,8 +208,12 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+
+        $employee->load('address', 'company', 'salaries', 'emergencies', 'children', 'dependants');
+
+        return view('employee.view', compact('employee'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -221,5 +247,16 @@ class EmployeeController extends Controller
             ->get();
 
         return view('Employee.list', compact('employees'));
+    }
+
+    public function disable(Employee $employee)
+    {
+        $employee->update([
+            'status' => 0
+        ]);
+
+        return redirect()
+            ->back()
+            ->with('success', 'Employee disabled successfully.');
     }
 }

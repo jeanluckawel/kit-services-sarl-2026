@@ -62,7 +62,7 @@
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <img
-                                        src="https://ui-avatars.com/api/?name=Jean+Luc&background=FF6600&color=fff"
+                                        src="{{ asset( 'public/storage'.$employee->photo) }}"
                                         alt="Employee Photo"
                                         class="rounded-circle"
                                         width="45"
@@ -82,16 +82,36 @@
                             <td>15/03/2021</td>
                             <td><span class="badge text-bg-success">CDI</span></td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-outline-primary" title="View">
-                                    <i class="bi bi-eye"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-warning" title="Edit">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger" title="Delete">
-                                    <i class="bi bi-trash"></i>
-                                </button>
+                                <div class="d-inline-flex gap-1">
+
+                                    <!-- View -->
+                                    <a href="{{ route('employee.view', $employee->id) }}"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="View">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+
+
+                                    <!-- Edit -->
+                                    <button class="btn btn-sm btn-outline-warning" title="Edit">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+
+                                    <!-- Disable -->
+                                    <button
+                                        class="btn btn-sm btn-outline-danger"
+                                        title="Disable"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#disableEmployeeModal"
+                                        data-employee-id="{{ $employee->id }}"
+                                    >
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+
+                                </div>
                             </td>
+
+
                         </tr>
                     @endforeach
                     </tbody>
@@ -112,5 +132,11 @@
         </div>
 
     </div>
+
+
+@include('Employee.Modal.disable')
+
+
+
 
 @endsection
