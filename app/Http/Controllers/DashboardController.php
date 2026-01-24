@@ -2,37 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee\Employee;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard.dashboard');
+        $employees = Employee::where('status', 1)->get();
+        $employeeCount = Employee::where('status', 1)->count();
 
-    }
+        return view('dashboard.dashboard', compact('employees', 'employeeCount'));
 
-    public function create()
-    {
-    }
-
-    public function store(Request $request)
-    {
-    }
-
-    public function show($id)
-    {
-    }
-
-    public function edit($id)
-    {
-    }
-
-    public function update(Request $request, $id)
-    {
-    }
-
-    public function destroy($id)
-    {
     }
 }

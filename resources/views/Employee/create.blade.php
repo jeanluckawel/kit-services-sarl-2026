@@ -90,6 +90,7 @@
 
                 <!-- Tabs content -->
                 <div class="tab-content" id="employeeTabContent">
+
                     <!-- Personal Info -->
                     <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="personal-tab">
                         <div class="row g-3">
@@ -177,6 +178,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Company  -->
                     <div class="tab-pane fade" id="company" role="tabpanel" aria-labelledby="company-tab">
@@ -303,6 +305,7 @@
                         </div>
                     </div>
 
+
                     <div class="tab-pane fade" id="education" role="tabpanel" aria-labelledby="education-tab">
                         <div class="row g-3 mt-3">
 
@@ -330,14 +333,14 @@
                                         </select>
                                     </div>
 
-                                    <!-- Remove Button -->
+
                                     <div class="col-md-1 d-flex justify-content-end">
                                         <button type="button" class="btn btn-danger btn-sm removeChild" style="border-radius:0;">&times;</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Add Child Button -->
+
                             <div class="col-12">
                                 <button type="button" id="addChildBtn" class="btn btn-outline-warning" style="border-radius:0;">
                                     + Add Child
@@ -346,6 +349,7 @@
 
                         </div>
                     </div>
+
 
                     <div class="tab-pane fade" id="emergency" role="tabpanel" aria-labelledby="emergency-tab">
                         <div class="row g-3 mt-3">
@@ -386,43 +390,48 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="dependants" role="tabpanel" aria-labelledby="dependants-tab">
+
+                    <div class="tab-pane fade" id="dependants" role="tabpanel">
                         <div class="row g-3 mt-3">
 
-                            <div class="col-12 mb-3 d-flex justify-content-between align-items-center">
-                                <button type="button" class="btn btn-sm btn-warning" id="addDependant">+ Add Dependant</button>
-                            </div>
-
                             <div id="dependantsContainer">
-                                <!-- Dependant template -->
+
+                                <!-- FIRST DEPENDANT -->
                                 <div class="row g-3 mb-2 dependant-row">
                                     <div class="col-md-3">
-                                        <label class="form-label fw-bold">Full Name</label>
-                                        <input type="text" name="dependants[0][full_name]" class="form-control" placeholder="Full Name" autocomplete="off" style="border-radius:0;">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label fw-bold">Relationship</label>
-                                        <select name="dependants[0][relationship]" class="form-select" style="border-radius:0;">
+                                        <select name="dependants[0][relationship]" class="form-select">
                                             <option value="">Select</option>
                                             <option value="Father">Father</option>
                                             <option value="Mother">Mother</option>
                                             <option value="Spouse">Spouse</option>
+                                            <option value="Brother">Brother</option>
+                                            <option value="Sister">Sister</option>
                                         </select>
                                     </div>
+
                                     <div class="col-md-3">
-                                        <label class="form-label fw-bold">Phone</label>
-                                        <input type="text" name="dependants[0][phone]" class="form-control" placeholder="+123456789" autocomplete="off" style="border-radius:0;">
+                                        <input type="text" name="dependants[0][full_name]" class="form-control" placeholder="Full Name">
                                     </div>
+
                                     <div class="col-md-3">
-                                        <label class="form-label fw-bold">Address</label>
-                                        <input type="text" name="dependants[0][address]" class="form-control" placeholder="Address" autocomplete="off" style="border-radius:0;">
+                                        <input type="text" name="dependants[0][phone]" class="form-control" placeholder="Phone">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <input type="text" name="dependants[0][address]" class="form-control" placeholder="Address">
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <div class="col-12">
+                                <button type="button" id="addDependant" class="btn btn-outline-warning" style="border-radius:0;">
+                                    + Add Dependant
+                                </button>
                             </div>
 
                         </div>
                     </div>
-
 
 
                     <div class="tab-pane fade" id="salary" role="tabpanel" aria-labelledby="salary-tab">
@@ -471,11 +480,6 @@
                     </div>
 
 
-
-
-
-
-
                     <!-- Photo -->
                     <div class="tab-pane fade" id="photo" role="tabpanel" aria-labelledby="photo-tab">
                         <div class="row g-3">
@@ -488,14 +492,16 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
 
 
                 <div class="mt-4 text-end">
                     <button type="submit" class="btn btn-primary">Save </button>
                     <button type="reset" class="btn btn-secondary">Cancel </button>
                 </div>
+
+
             </form>
         </div>
     </div>
@@ -548,42 +554,50 @@
 
 
 
-        let dependantIndex = 1;
-        document.getElementById('addDependant').addEventListener('click', function() {
+
+            let dependantIndex = 1;
+
+            document.getElementById('addDependant').addEventListener('click', function () {
             const container = document.getElementById('dependantsContainer');
 
-            const newRow = document.createElement('div');
-            newRow.classList.add('row', 'g-3', 'mb-2', 'dependant-row');
-            newRow.innerHTML = `
-            <div class="col-md-3">
-                <input type="text" name="dependants[${dependantIndex}][full_name]" class="form-control" placeholder="Full Name" autocomplete="off" style="border-radius:0;">
-            </div>
-            <div class="col-md-3">
-                <select name="dependants[${dependantIndex}][relationship]" class="form-select" style="border-radius:0;">
-                    <option value="">Select</option>
-                    <option value="Father">Father</option>
-                    <option value="Mother">Mother</option>
-                    <option value="Spouse">Spouse</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <input type="text" name="dependants[${dependantIndex}][phone]" class="form-control" placeholder="+123456789" autocomplete="off" style="border-radius:0;">
-            </div>
-            <div class="col-md-2">
-                <input type="text" name="dependants[${dependantIndex}][address]" class="form-control" placeholder="Address" autocomplete="off" style="border-radius:0;">
-            </div>
-            <div class="col-md-1 d-flex align-items-end">
-                <button type="button" class="btn btn-sm btn-danger removeDependant">X</button>
-            </div>
-        `;
-            container.appendChild(newRow);
+            const row = document.createElement('div');
+            row.className = 'row g-3 mb-2 dependant-row';
+
+            row.innerHTML = `
+        <div class="col-md-3">
+            <select name="dependants[${dependantIndex}][relationship]" class="form-select">
+                <option value="">Select</option>
+                <option value="Father">Father</option>
+                <option value="Mother">Mother</option>
+                <option value="Spouse">Spouse</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <input type="text" name="dependants[${dependantIndex}][full_name]" class="form-control" placeholder="Full Name">
+        </div>
+
+        <div class="col-md-3">
+            <input type="text" name="dependants[${dependantIndex}][phone]" class="form-control" placeholder="Phone">
+        </div>
+
+        <div class="col-md-2">
+            <input type="text" name="dependants[${dependantIndex}][address]" class="form-control" placeholder="Address">
+        </div>
+
+        <div class="col-md-1">
+            <button type="button" class="btn btn-danger btn-sm removeDependant">X</button>
+        </div>
+    `;
+
+            container.appendChild(row);
             dependantIndex++;
 
-
-            newRow.querySelector('.removeDependant').addEventListener('click', function() {
-                newRow.remove();
-            });
+            row.querySelector('.removeDependant').onclick = () => row.remove();
         });
+
 
     //     == country
 
