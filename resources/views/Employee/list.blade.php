@@ -62,7 +62,7 @@
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <img
-                                        src="{{ asset( 'public/storage'.$employee->photo) }}"
+                                        src="{{ asset('storage/', $employee->photo) }}"
                                         alt="Employee Photo"
                                         class="rounded-circle"
                                         width="45"
@@ -93,9 +93,13 @@
 
 
                                     <!-- Edit -->
-                                    <button class="btn btn-sm btn-outline-warning" title="Edit">
+                                    <!-- Edit -->
+                                    <a href="{{ route('employee.edit', $employee->id) }}"
+                                       class="btn btn-sm btn-outline-warning"
+                                       title="Edit">
                                         <i class="bi bi-pencil-square"></i>
-                                    </button>
+                                    </a>
+
 
                                     <!-- Disable -->
                                     <button

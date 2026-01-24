@@ -22,6 +22,7 @@ return new class extends Migration
 
             $table->timestamps();
 
+
             $table->index('employee_id');
 
             $table->softDeletes();

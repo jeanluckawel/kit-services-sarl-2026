@@ -15,6 +15,9 @@ class Employee extends Model
 
     protected $fillable = [
         'employee_id', 'first_name', 'last_name', 'middle_name', 'gender', 'date_of_birth', 'number_card', 'pays', 'marital_status', 'number_of_children', 'photo', 'status',
+
+        'child_full_name',
+        'full_name',
     ];
 
     public function address()
@@ -39,11 +42,11 @@ class Employee extends Model
 
     public function emergencies()
     {
-        return $this->hasMany(Emergency::class, 'employee_id','employee_id');
+        return $this->hasOne(Emergency::class, 'employee_id','employee_id');
     }
 
     public function salaries()
     {
-        return $this->hasMany(Salary::class, 'employee_id','employee_id');
+        return $this->hasOne(Salary::class, 'employee_id','employee_id');
     }
 }

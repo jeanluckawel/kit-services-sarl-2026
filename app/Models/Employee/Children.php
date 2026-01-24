@@ -13,7 +13,7 @@ class Children extends Model
     use HasFactory;
 
     protected $fillable = [
-        'employee_id', 'full_name', 'date_of_birth', 'gender', 'school',
+        'employee_id', 'full_name', 'date_of_birth', 'gender',
     ];
 
     public function employee()
