@@ -37,9 +37,9 @@
             </div>
         </div>
 
-        <!-- /.card-header -->
+
         <div class="card-body">
-            <!-- TABLE RESPONSIVE -->
+
             <div class="table-responsive">
                 <table class="table table-bordered table-hover align-middle text-nowrap">
                     <thead class="table-light">
@@ -92,8 +92,6 @@
                                     </a>
 
 
-                                    <!-- Edit -->
-                                    <!-- Edit -->
                                     <a href="{{ route('employee.edit', $employee->id) }}"
                                        class="btn btn-sm btn-outline-warning"
                                        title="Edit">
@@ -101,7 +99,7 @@
                                     </a>
 
 
-                                    <!-- Disable -->
+
                                     <button
                                         class="btn btn-sm btn-outline-danger"
                                         title="Disable"
@@ -121,9 +119,9 @@
                     </tbody>
                 </table>
             </div>
-            <!-- /.table-responsive -->
+
         </div>
-        <!-- /.card-body -->
+
 
         <div class="card-footer clearfix">
             <ul class="pagination pagination-sm m-0 float-end">
@@ -137,10 +135,7 @@
 
     </div>
 
-
 @include('Employee.Modal.disable')
-
-
 
 
 @endsection
