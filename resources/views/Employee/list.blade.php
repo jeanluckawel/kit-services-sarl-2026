@@ -94,7 +94,7 @@
                                 {{ $employee->date_of_birth ? \Carbon\Carbon::parse($employee->date_of_birth)->age : '-' }}
                             </td>
 
-                            <td><strong>1,200 USD</strong></td>
+                            <td><strong>{{ number_format($employee->salaries->base_salary,2 ?? 'N/A' ) }}</strong></td>
 
                             <td>15/03/2021</td>
 
