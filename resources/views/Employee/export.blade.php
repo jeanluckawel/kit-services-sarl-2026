@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layoutsddd.app')
 
 @section('title', 'Export Employees - KIT SERVICES')
 
@@ -6,7 +6,8 @@
 
     <div class="card mb-4 m-5 border-0" style="border-radius:0;">
 
-        <div class="card-header d-flex align-items-center" style="background-color: #FF6600; color: #fff; border-radius:0;">
+        <div class="card-header d-flex align-items-center"
+             style="background-color: #FF6600; color: #fff; border-radius:0;">
             <h3 class="card-title mb-0">Export Employees to Excel</h3>
             <nav aria-label="breadcrumb" class="ms-auto">
                 <ol class="breadcrumb mb-0 bg-transparent">

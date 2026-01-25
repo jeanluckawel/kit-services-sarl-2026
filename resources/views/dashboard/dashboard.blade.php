@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layoutsddd.app')
 
 @section('title', 'Dashboard - KIT SERVICES')
 
@@ -7,7 +7,7 @@
     <div class="app-content-header">
 
         <div class="container-fluid">
-                <div class="col-sm-6"><h3 class="mb-0">Dashboard </h3></div>
+            <div class="col-sm-6"><h3 class="mb-0">Dashboard </h3></div>
         </div>
 
     </div>

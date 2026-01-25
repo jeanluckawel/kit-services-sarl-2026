@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layoutsddd.app')
 
 @section('title', 'Kit Service | Profil')
 
@@ -22,7 +22,7 @@
             font-size: 11px;
             box-sizing: border-box;
             background-color: #fff;
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
@@ -46,6 +46,7 @@
                 padding: 1rem;
                 font-size: 10px;
             }
+
             .fiche .row > [class*="col-"] {
                 margin-bottom: 1rem;
             }
@@ -266,8 +267,11 @@
             <div class="alert alert-warning p-2 mb-3" role="alert" style="font-size:10px;">
                 <strong>Attention :</strong>
                 <ul class="mb-0">
-                    <li>Aucun de ceux du salaire ne pourra être établi après retour de cette fiche dûment complétée.</li>
-                    <li>Les champs signalés par un calendrier sont obligatoires pour établir la déclaration annuelle des salaires.</li>
+                    <li>Aucun de ceux du salaire ne pourra être établi après retour de cette fiche dûment complétée.
+                    </li>
+                    <li>Les champs signalés par un calendrier sont obligatoires pour établir la déclaration annuelle des
+                        salaires.
+                    </li>
                 </ul>
             </div>
 

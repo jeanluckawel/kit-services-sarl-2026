@@ -31,7 +31,24 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'id_nat' => 'nullable|string|max:255',
+            'rccm' => 'nullable|string|max:255',
+            'nif' => 'nullable|string|max:255',
+            'province' => 'nullable|string|max:255',
+            'ville' => 'nullable|string|max:255',
+            'commune' => 'nullable|string|max:255',
+            'quartier' => 'nullable|string|max:255',
+            'avenue' => 'nullable|string|max:255',
+            'numero' => 'nullable|string|max:255',
+            'telephone' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:254',
+        ]);
+
+        Customer::create($validated);
+
+        return redirect()->route('customer.index')->with('success', 'Customer created successfully!');
     }
 
     /**
@@ -47,7 +64,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', compact('customer'));
     }
 
     /**
@@ -55,7 +72,24 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'id_nat' => 'nullable|string|max:255',
+            'rccm' => 'nullable|string|max:255',
+            'nif' => 'nullable|string|max:255',
+            'province' => 'nullable|string|max:255',
+            'ville' => 'nullable|string|max:255',
+            'commune' => 'nullable|string|max:255',
+            'quartier' => 'nullable|string|max:255',
+            'avenue' => 'nullable|string|max:255',
+            'numero' => 'nullable|string|max:255',
+            'telephone' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:254',
+        ]);
+
+        $customer->update($validated);
+
+        return redirect()->route('customer.index')->with('success', 'Customer updated successfully!');
     }
 
     /**
@@ -63,6 +97,19 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return redirect()->route('customer.index')->with('success', 'Customer deleted successfully!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+
+        $customers = Customer::where('name', 'like', "%{$search}%")
+            ->orWhere('ville', 'like', "%{$search}%")
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('customer.partials.table', compact('customers'));
     }
 }

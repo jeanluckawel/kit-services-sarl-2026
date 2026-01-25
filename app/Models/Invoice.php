@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends Model
+class Invoice extends Model
 {
     //
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name', 'id_nat', 'rccm', 'nif', 'province', 'ville', 'commune', 'quartier', 'avenue', 'numero', 'telephone', 'email',
+        'customer_id', 'po', 'numero_invoice', 'description', 'unite', 'quantity', 'nb_jours', 'pu', 'pt_jours', 'pt_mois',
     ];
 
-    public function invoices()
+    public function customer()
     {
-        return $this->hasMany(Invoice::class);
+        return $this->belongsTo(Customer::class);
     }
+
+
 }

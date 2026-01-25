@@ -1,70 +1,84 @@
-@extends('layouts.app')
+@extends('layoutsddd.app')
 
 @section('title', 'Edit Employee - KIT SERVICES')
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @section('content')
 
     <div class="card mb-4 m-5 border-0" style="border-radius:0;">
         <!-- Header -->
-        <div class="card-header d-flex align-items-center" style="background-color: #FF6600; color: #fff; border-radius:0;">
-            <h3 class="card-title mb-0">Edit Employee info <spam>{{ $employee->employee_id ?? '' }}</spam>  </h3>
+        <div class="card-header d-flex align-items-center"
+             style="background-color: #FF6600; color: #fff; border-radius:0;">
+            <h3 class="card-title mb-0">Edit Employee info
+                <spam>{{ $employee->employee_id ?? '' }}</spam>
+            </h3>
             <nav aria-label="breadcrumb" class="ms-auto">
                 <ol class="breadcrumb mb-0 bg-transparent">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-white">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('employee.list') }}" class="text-white">Employee</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('employee.list') }}" class="text-white">Employee</a>
+                    </li>
                     <li class="breadcrumb-item active text-white" aria-current="page">Edit</li>
                 </ol>
             </nav>
         </div>
 
         <div class="card-body">
-            <form action="{{ route('employee.update', $employee) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <form action="{{ route('employee.update', $employee) }}" method="POST" enctype="multipart/form-data"
+                  autocomplete="off">
                 @csrf
                 @method('PUT')
 
                 <ul class="nav nav-tabs mb-4" id="employeeTab" role="tablist" style="border-radius:0;">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab" style="color:#FF6600; font-weight:500;">
+                        <button class="nav-link active" id="personal-tab" data-bs-toggle="tab"
+                                data-bs-target="#personal" type="button" role="tab"
+                                style="color:#FF6600; font-weight:500;">
                             Personal
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="address-tab" data-bs-toggle="tab" data-bs-target="#address" type="button" role="tab" style="color:#FF6600; font-weight:500;">
+                        <button class="nav-link" id="address-tab" data-bs-toggle="tab" data-bs-target="#address"
+                                type="button" role="tab" style="color:#FF6600; font-weight:500;">
                             Address
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="company-tab" data-bs-toggle="tab" data-bs-target="#company" type="button" role="tab" style="color:#FF6600; font-weight:500;">
+                        <button class="nav-link" id="company-tab" data-bs-toggle="tab" data-bs-target="#company"
+                                type="button" role="tab" style="color:#FF6600; font-weight:500;">
                             Company
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="children-tab" data-bs-toggle="tab" data-bs-target="#children" type="button" role="tab" style="color:#FF6600; font-weight:500;">
+                        <button class="nav-link" id="children-tab" data-bs-toggle="tab" data-bs-target="#children"
+                                type="button" role="tab" style="color:#FF6600; font-weight:500;">
                             Children
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="dependants-tab" data-bs-toggle="tab" data-bs-target="#dependants" type="button" role="tab" style="color:#FF6600; font-weight:500;">
+                        <button class="nav-link" id="dependants-tab" data-bs-toggle="tab" data-bs-target="#dependants"
+                                type="button" role="tab" style="color:#FF6600; font-weight:500;">
                             Dependants
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="emergency-tab" data-bs-toggle="tab" data-bs-target="#emergency" type="button" role="tab" style="color:#FF6600; font-weight:500;">
+                        <button class="nav-link" id="emergency-tab" data-bs-toggle="tab" data-bs-target="#emergency"
+                                type="button" role="tab" style="color:#FF6600; font-weight:500;">
                             Emergency
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="salary-tab" data-bs-toggle="tab" data-bs-target="#salary" type="button" role="tab" style="color:#FF6600; font-weight:500;">
+                        <button class="nav-link" id="salary-tab" data-bs-toggle="tab" data-bs-target="#salary"
+                                type="button" role="tab" style="color:#FF6600; font-weight:500;">
                             Salary
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="photo-tab" data-bs-toggle="tab" data-bs-target="#photo" type="button" role="tab" style="color:#FF6600; font-weight:500;">
+                        <button class="nav-link" id="photo-tab" data-bs-toggle="tab" data-bs-target="#photo"
+                                type="button" role="tab" style="color:#FF6600; font-weight:500;">
                             Photo
                         </button>
                     </li>
@@ -95,21 +109,25 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">First Name </label>
                                     <input type="text" name="first_name" class="form-control"
-                                           value="{{ old('first_name', $employee->first_name) }}"  style="border-radius:0;">
+                                           value="{{ old('first_name', $employee->first_name) }}"
+                                           style="border-radius:0;">
                                 </div>
 
 
                                 <div class="mb-3">
-                                    <label class="form-label fw-bold">Last Name <span class="text-danger">*</span></label>
+                                    <label class="form-label fw-bold">Last Name <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="last_name" class="form-control"
-                                           value="{{ old('last_name', $employee->last_name) }}" required style="border-radius:0;">
+                                           value="{{ old('last_name', $employee->last_name) }}" required
+                                           style="border-radius:0;">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Middle Name</label>
                                     <input type="text" name="middle_name" class="form-control"
-                                           value="{{ old('middle_name', $employee->middle_name) }}" style="border-radius:0;">
+                                           value="{{ old('middle_name', $employee->middle_name) }}"
+                                           style="border-radius:0;">
                                 </div>
 
 
@@ -117,8 +135,14 @@
                                     <label class="form-label fw-bold">Gender <span class="text-danger">*</span></label>
                                     <select name="gender" class="form-select" required style="border-radius:0;">
                                         <option value="">Select</option>
-                                        <option value="M" {{ old('gender', $employee->gender) == 'M' ? 'selected' : '' }}>Male</option>
-                                        <option value="F" {{ old('gender', $employee->gender) == 'F' ? 'selected' : '' }}>Female</option>
+                                        <option
+                                            value="M" {{ old('gender', $employee->gender) == 'M' ? 'selected' : '' }}>
+                                            Male
+                                        </option>
+                                        <option
+                                            value="F" {{ old('gender', $employee->gender) == 'F' ? 'selected' : '' }}>
+                                            Female
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -127,24 +151,28 @@
                             <div class="col-md-4">
 
                                 <div class="mb-3">
-                                    <label class="form-label fw-bold">Date of Birth <span class="text-danger">*</span></label>
+                                    <label class="form-label fw-bold">Date of Birth <span
+                                            class="text-danger">*</span></label>
                                     <input type="date" name="date_of_birth" class="form-control"
-                                           value="{{ old('date_of_birth', $employee->date_of_birth) }}" required style="border-radius:0;">
+                                           value="{{ old('date_of_birth', $employee->date_of_birth) }}" required
+                                           style="border-radius:0;">
                                 </div>
 
 
                                 <div class="mb-3">
-                                    <label class="form-label fw-bold">Number Card <span class="text-danger">*</span></label>
+                                    <label class="form-label fw-bold">Number Card <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="number_card" class="form-control"
-                                           value="{{ old('number_card', $employee->number_card) }}" required style="border-radius:0;">
+                                           value="{{ old('number_card', $employee->number_card) }}" required
+                                           style="border-radius:0;">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Country <span class="text-danger">*</span></label>
                                     <select name="pays" id="country" class="form-select"
-                                             data-selected="{{ old('pays') ?? ($employee->pays ?? '') }}"
-                                             style="border-radius:0;">
+                                            data-selected="{{ old('pays') ?? ($employee->pays ?? '') }}"
+                                            style="border-radius:0;">
                                         <option value="">Select Country</option>
                                     </select>
                                 </div>
@@ -153,10 +181,22 @@
                                     <label class="form-label fw-bold">Marital Status <span class="text-danger">*</span></label>
                                     <select name="marital_status" class="form-select" required style="border-radius:0;">
                                         <option value="">Select</option>
-                                        <option value="single"   {{ old('marital_status', $employee->marital_status) == 'single' ? 'selected' : '' }}>Single</option>
-                                        <option value="married"  {{ old('marital_status', $employee->marital_status) == 'married' ? 'selected' : '' }}>Married</option>
-                                        <option value="divorced" {{ old('marital_status', $employee->marital_status) == 'divorced' ? 'selected' : '' }}>Divorced</option>
-                                        <option value="widowed"  {{ old('marital_status', $employee->marital_status) == 'widowed' ? 'selected' : '' }}>Widowed</option>
+                                        <option
+                                            value="single" {{ old('marital_status', $employee->marital_status) == 'single' ? 'selected' : '' }}>
+                                            Single
+                                        </option>
+                                        <option
+                                            value="married" {{ old('marital_status', $employee->marital_status) == 'married' ? 'selected' : '' }}>
+                                            Married
+                                        </option>
+                                        <option
+                                            value="divorced" {{ old('marital_status', $employee->marital_status) == 'divorced' ? 'selected' : '' }}>
+                                            Divorced
+                                        </option>
+                                        <option
+                                            value="widowed" {{ old('marital_status', $employee->marital_status) == 'widowed' ? 'selected' : '' }}>
+                                            Widowed
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -254,7 +294,8 @@
                             {{-- Contract Type --}}
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">Contract Type</label>
-                                <select name="contract_type" id="contract_type" class="form-select" style="border-radius:0;">
+                                <select name="contract_type" id="contract_type" class="form-select"
+                                        style="border-radius:0;">
                                     <option value="">Select</option>
                                     @foreach(['CDI','CDD','Stage','Consultant'] as $item)
                                         <option value="{{ $item }}"
@@ -277,8 +318,9 @@
                             </div>
 
                             {{-- End Contract Date --}}
-                            <div class="col-md-6 {{ in_array(old('contract_type', $employee->company?->contract_type), ['CDD','Stage','Consultant']) ? '' : 'd-none' }}"
-                                 id="endContractWrapper">
+                            <div
+                                class="col-md-6 {{ in_array(old('contract_type', $employee->company?->contract_type), ['CDD','Stage','Consultant']) ? '' : 'd-none' }}"
+                                id="endContractWrapper">
                                 <label class="form-label fw-bold">End Contract Date</label>
                                 <input
                                     type="date"
@@ -345,27 +387,40 @@
 
                                         <div class="col-md-4">
                                             <label class="form-label fw-bold">Full Name</label>
-                                            <input type="text" name="children[{{ $i }}][child_full_name]" class="form-control"
-                                                   value="{{ old("children.$i.child_full_name", $child->full_name) }}" autocomplete="off" style="border-radius:0;">
+                                            <input type="text" name="children[{{ $i }}][child_full_name]"
+                                                   class="form-control"
+                                                   value="{{ old("children.$i.child_full_name", $child->full_name) }}"
+                                                   autocomplete="off" style="border-radius:0;">
                                         </div>
 
                                         <div class="col-md-4">
                                             <label class="form-label fw-bold">Date of Birth</label>
-                                            <input type="date" name="children[{{ $i }}][child_date_of_birth]" class="form-control"
-                                                   value="{{ old("children.$i.child_date_of_birth", $child->date_of_birth) }}" style="border-radius:0;">
+                                            <input type="date" name="children[{{ $i }}][child_date_of_birth]"
+                                                   class="form-control"
+                                                   value="{{ old("children.$i.child_date_of_birth", $child->date_of_birth) }}"
+                                                   style="border-radius:0;">
                                         </div>
 
                                         <div class="col-md-3">
                                             <label class="form-label fw-bold">Gender</label>
-                                            <select name="children[{{ $i }}][child_gender]" class="form-select" style="border-radius:0; color:#ff6600;">
+                                            <select name="children[{{ $i }}][child_gender]" class="form-select"
+                                                    style="border-radius:0; color:#ff6600;">
                                                 <option value="">Select Gender</option>
-                                                <option value="M" {{ old("children.$i.child_gender", $child->gender) == 'M' ? 'selected' : '' }}>Male</option>
-                                                <option value="F" {{ old("children.$i.child_gender", $child->gender) == 'F' ? 'selected' : '' }}>Female</option>
+                                                <option
+                                                    value="M" {{ old("children.$i.child_gender", $child->gender) == 'M' ? 'selected' : '' }}>
+                                                    Male
+                                                </option>
+                                                <option
+                                                    value="F" {{ old("children.$i.child_gender", $child->gender) == 'F' ? 'selected' : '' }}>
+                                                    Female
+                                                </option>
                                             </select>
                                         </div>
 
                                         <div class="col-md-1 d-flex justify-content-end">
-                                            <button type="button" class="btn btn-danger btn-sm removeChild" style="border-radius:0;">&times;</button>
+                                            <button type="button" class="btn btn-danger btn-sm removeChild"
+                                                    style="border-radius:0;">&times;
+                                            </button>
                                         </div>
                                     </div>
                                 @empty
@@ -374,7 +429,8 @@
                             </div>
 
                             <div class="col-12">
-                                <button type="button" id="addChildBtn" class="btn btn-outline-warning" style="border-radius:0;">
+                                <button type="button" id="addChildBtn" class="btn btn-outline-warning"
+                                        style="border-radius:0;">
                                     + Add Child
                                 </button>
                             </div>
@@ -394,7 +450,8 @@
                                         {{-- Full Name --}}
                                         <div class="col-md-3">
                                             <label class="form-label fw-bold">Full Name</label>
-                                            <input type="text" name="dependants[{{ $i }}][dep_full_name]" class="form-control"
+                                            <input type="text" name="dependants[{{ $i }}][dep_full_name]"
+                                                   class="form-control"
                                                    value="{{ $dep->full_name }}"
                                                    autocomplete="off" style="border-radius:0;">
                                         </div>
@@ -406,7 +463,8 @@
                                                     style="border-radius:0; color:#ff6600;">
                                                 <option value="">Select</option>
                                                 @foreach(['Father','Mother','Spouse','Brother','Sister','Mr','Mrs','Dr'] as $rel)
-                                                    <option value="{{ $rel }}" {{ $dep->relationship == $rel ? 'selected' : '' }}>
+                                                    <option
+                                                        value="{{ $rel }}" {{ $dep->relationship == $rel ? 'selected' : '' }}>
                                                         {{ $rel }}
                                                     </option>
                                                 @endforeach
@@ -416,20 +474,24 @@
                                         {{-- Phone --}}
                                         <div class="col-md-3">
                                             <label class="form-label fw-bold">Phone</label>
-                                            <input type="text" name="dependants[{{ $i }}][dep_phone]" class="form-control"
+                                            <input type="text" name="dependants[{{ $i }}][dep_phone]"
+                                                   class="form-control"
                                                    value="{{ $dep->phone }}" style="border-radius:0;">
                                         </div>
 
                                         {{-- Address --}}
                                         <div class="col-md-2">
                                             <label class="form-label fw-bold">Address</label>
-                                            <input type="text" name="dependants[{{ $i }}][dep_address]" class="form-control"
+                                            <input type="text" name="dependants[{{ $i }}][dep_address]"
+                                                   class="form-control"
                                                    value="{{ $dep->address }}" style="border-radius:0;">
                                         </div>
 
                                         {{-- Bouton Supprimer --}}
                                         <div class="col-md-1 d-flex justify-content-end">
-                                            <button type="button" class="btn btn-danger btn-sm removeDependant" style="border-radius:0;">&times;</button>
+                                            <button type="button" class="btn btn-danger btn-sm removeDependant"
+                                                    style="border-radius:0;">&times;
+                                            </button>
                                         </div>
                                     </div>
                                 @empty
@@ -439,7 +501,8 @@
 
                             {{-- Bouton Ajouter --}}
                             <div class="col-12">
-                                <button type="button" id="addDependantBtn" class="btn btn-outline-warning" style="border-radius:0;">
+                                <button type="button" id="addDependantBtn" class="btn btn-outline-warning"
+                                        style="border-radius:0;">
                                     + Add Dependant
                                 </button>
                             </div>
@@ -508,7 +571,8 @@
                             {{-- Category --}}
                             <div class="col-md-3">
                                 <label class="form-label fw-bold">Category</label>
-                                <select name="salary_category" class="form-select" style="border-radius:0; color:#ff6600;">
+                                <select name="salary_category" class="form-select"
+                                        style="border-radius:0; color:#ff6600;">
                                     <option value="">Select Category</option>
                                     @foreach(['A1','A2','A3','B1','B2','C1','C2'] as $cat)
                                         <option value="{{ $cat }}"
@@ -522,7 +586,8 @@
                             {{-- Echelon --}}
                             <div class="col-md-3">
                                 <label class="form-label fw-bold">Echelon</label>
-                                <select name="salary_echelon" class="form-select" style="border-radius:0; color:#ff6600;">
+                                <select name="salary_echelon" class="form-select"
+                                        style="border-radius:0; color:#ff6600;">
                                     <option value="">Select Echelon</option>
                                     @foreach(['I','II','III','IV','V'] as $echelon)
                                         <option value="{{ $echelon }}"
@@ -536,7 +601,8 @@
                             {{-- Currency --}}
                             <div class="col-md-3">
                                 <label class="form-label fw-bold">Currency</label>
-                                <select name="salary_currency" class="form-select" style="border-radius:0; color:#ff6600;">
+                                <select name="salary_currency" class="form-select"
+                                        style="border-radius:0; color:#ff6600;">
                                     @foreach(['USD','CDF'] as $currency)
                                         <option value="{{ $currency }}"
                                             {{ old('salary_currency', $employee->salaries?->currency) == $currency ? 'selected' : '' }}>
@@ -586,17 +652,17 @@
 
 
     <script>
-    // child
-    let childIndex = {{ $employee->children->count() ?? 0 }};
+        // child
+        let childIndex = {{ $employee->children->count() ?? 0 }};
 
-    document.getElementById('addChildBtn').addEventListener('click', function() {
-        const container = document.getElementById('childrenContainer');
+        document.getElementById('addChildBtn').addEventListener('click', function () {
+            const container = document.getElementById('childrenContainer');
 
-        const row = document.createElement('div');
-        row.classList.add('row', 'g-3', 'child-row', 'mb-2', 'align-items-end');
-        row.setAttribute('data-index', childIndex);
+            const row = document.createElement('div');
+            row.classList.add('row', 'g-3', 'child-row', 'mb-2', 'align-items-end');
+            row.setAttribute('data-index', childIndex);
 
-        row.innerHTML = `
+            row.innerHTML = `
             <div class="col-md-4">
                 <label class="form-label fw-bold">Full Name</label>
                 <input type="text" name="children[${childIndex}][child_full_name]" class="form-control" placeholder="Full Name" style="border-radius:0;">
@@ -618,29 +684,29 @@
             </div>
         `;
 
-        container.appendChild(row);
-        childIndex++;
-    });
+            container.appendChild(row);
+            childIndex++;
+        });
 
-    document.addEventListener('click', function(e) {
-        if(e.target.classList.contains('removeChild')){
-            e.target.closest('.child-row').remove();
-        }
-    });
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('removeChild')) {
+                e.target.closest('.child-row').remove();
+            }
+        });
 
 
-    // dependant
+        // dependant
 
-    let depIndex = {{ $employee->dependants->count() ?? 0 }};
+        let depIndex = {{ $employee->dependants->count() ?? 0 }};
 
-    document.getElementById('addDependantBtn').addEventListener('click', function() {
-        const container = document.getElementById('dependantsContainer');
+        document.getElementById('addDependantBtn').addEventListener('click', function () {
+            const container = document.getElementById('dependantsContainer');
 
-        const row = document.createElement('div');
-        row.classList.add('row', 'g-3', 'dependant-row', 'mb-2', 'align-items-end');
-        row.setAttribute('data-index', depIndex);
+            const row = document.createElement('div');
+            row.classList.add('row', 'g-3', 'dependant-row', 'mb-2', 'align-items-end');
+            row.setAttribute('data-index', depIndex);
 
-        row.innerHTML = `
+            row.innerHTML = `
             <div class="col-md-3">
                 <label class="form-label fw-bold">Full Name</label>
                 <input type="text" name="dependants[${depIndex}][dep_full_name]" class="form-control" placeholder="Full Name" style="border-radius:0;">
@@ -672,89 +738,89 @@
             </div>
         `;
 
-        container.appendChild(row);
-        depIndex++;
-    });
+            container.appendChild(row);
+            depIndex++;
+        });
 
-    document.addEventListener('click', function(e) {
-        if(e.target.classList.contains('removeDependant')){
-            e.target.closest('.dependant-row').remove();
-        }
-    });
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('removeDependant')) {
+                e.target.closest('.dependant-row').remove();
+            }
+        });
 
-    // country
+        // country
 
-            $(document).ready(function () {
+        $(document).ready(function () {
 
             const $select = $('#country');
             const selectedCountry = $select.data('selected');
 
             fetch('https://countriesnow.space/api/v0.1/countries/flag/images')
-            .then(response => response.json())
-            .then(res => {
+                .then(response => response.json())
+                .then(res => {
 
-            if (res.error) return;
-
-
-            const rdcValue = "Democratic Republic of the Congo";
-            const rdcOption = new Option(
-            "RD Congo",
-            rdcValue,
-            false,
-            selectedCountry === rdcValue
-            );
-
-            $(rdcOption).attr('data-flag', 'https://flagcdn.com/w20/cd.png');
-            $select.append(rdcOption);
+                    if (res.error) return;
 
 
-            res.data.forEach(country => {
+                    const rdcValue = "Democratic Republic of the Congo";
+                    const rdcOption = new Option(
+                        "RD Congo",
+                        rdcValue,
+                        false,
+                        selectedCountry === rdcValue
+                    );
 
-            if (country.name === rdcValue) return;
-
-            const option = new Option(
-            country.name,
-            country.name,
-            false,
-            country.name === selectedCountry
-            );
-
-            $(option).attr('data-flag', country.flag);
-            $select.append(option);
-        });
+                    $(rdcOption).attr('data-flag', 'https://flagcdn.com/w20/cd.png');
+                    $select.append(rdcOption);
 
 
-            $select.select2({
-            width: '100%',
-            placeholder: 'Select Country',
-            templateResult: formatCountry,
-            templateSelection: formatCountry
-        });
+                    res.data.forEach(country => {
+
+                        if (country.name === rdcValue) return;
+
+                        const option = new Option(
+                            country.name,
+                            country.name,
+                            false,
+                            country.name === selectedCountry
+                        );
+
+                        $(option).attr('data-flag', country.flag);
+                        $select.append(option);
+                    });
 
 
-            if (selectedCountry) {
-            $select.val(selectedCountry).trigger('change');
-        }
-        })
-            .catch(err => console.error(err));
+                    $select.select2({
+                        width: '100%',
+                        placeholder: 'Select Country',
+                        templateResult: formatCountry,
+                        templateSelection: formatCountry
+                    });
+
+
+                    if (selectedCountry) {
+                        $select.val(selectedCountry).trigger('change');
+                    }
+                })
+                .catch(err => console.error(err));
 
             function formatCountry(country) {
-            if (!country.id) return country.text;
+                if (!country.id) return country.text;
 
-            const flag = $(country.element).data('flag');
+                const flag = $(country.element).data('flag');
 
-            if (!flag) return country.text;
+                if (!flag) return country.text;
 
-            return $(`
+                return $(`
             <span style="display:flex;align-items:center;">
                 <img src="${flag}" width="20"
                      style="margin-right:8px" alt="">
                 ${country.text}
             </span>
         `);
-        }
+            }
         });
 
     </script>
-    @endsection
+@endsection
 

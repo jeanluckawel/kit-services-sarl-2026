@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layoutsddd.app')
 
 @section('title', 'Create employee - KIT SERVICES')
 
@@ -28,7 +28,8 @@
                 height:40px;
             "
                 >
-                    <a href="{{ route('employee.create') }}" class="text-decoration-none" style="color: white; font-size: 20px">
+                    <a href="{{ route('employee.create') }}" class="text-decoration-none"
+                       style="color: white; font-size: 20px">
                         <i class="bi bi-plus-lg"></i>
                     </a>
                 </button>
@@ -161,17 +162,17 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        $('#searchEmployee').on('keyup', function(){
+        $('#searchEmployee').on('keyup', function () {
 
             let search = $(this).val();
 
             $.ajax({
                 url: "{{ route('employee.search') }}",
                 type: "GET",
-                data: { search: search },
-                success:function(data){
+                data: {search: search},
+                success: function (data) {
                     $('#employeeTable').html(data);
                 }
             });
