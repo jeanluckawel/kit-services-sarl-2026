@@ -11,7 +11,7 @@
             justify-content: center;
             padding-top: 20px;
             position: relative;
-            background-color: #f8f9fa; /* fond léger derrière la fiche */
+            background-color: #f8f9fa;
             min-height: 100vh;
         }
 
@@ -286,6 +286,6 @@
                 </div>
             </div>
 
-        </div> <!-- /.fiche -->
-    </div> <!-- /.fiche-wrapper -->
+        </div>
+    </div>
 @endsection
