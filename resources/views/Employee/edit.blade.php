@@ -93,7 +93,7 @@
                             <div class="col-md-4">
 
                                 <div class="mb-3">
-                                    <label class="form-label fw-bold">First Name <span class="text-danger">*</span></label>
+                                    <label class="form-label fw-bold">First Name </label>
                                     <input type="text" name="first_name" class="form-control"
                                            value="{{ old('first_name', $employee->first_name) }}"   style="border-radius:0;">
                                 </div>
@@ -369,7 +369,7 @@
                                         </div>
                                     </div>
                                 @empty
-                                    {{-- Aucun enfant existant, ne rien afficher ici --}}
+                                    {{-- Aucun enfant existant --}}
                                 @endforelse
                             </div>
 

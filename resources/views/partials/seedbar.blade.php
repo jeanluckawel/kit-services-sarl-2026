@@ -51,9 +51,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('employee.import.show') }}" class="nav-link">
                             <i class="nav-icon bi bi-file-earmark-text"></i>
-                            <p>Contracts</p>
+                            <p>Import</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('employee.export.show') }}" class="nav-link">
+                            <i class="nav-icon bi bi-file-earmark-text"></i>
+                            <p>Export</p>
                         </a>
                     </li>
 

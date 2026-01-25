@@ -40,6 +40,19 @@
 
         <div class="card-body">
 
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <input
+                        type="text"
+                        id="searchEmployee"
+                        class="form-control"
+                        placeholder="Search by Employee and full name"
+                    >
+                </div>
+            </div>
+
+
             <div class="table-responsive">
                 <table class="table table-bordered table-hover align-middle text-nowrap">
                     <thead class="table-light">
