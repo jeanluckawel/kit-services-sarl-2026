@@ -95,14 +95,14 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">First Name <span class="text-danger">*</span></label>
                                     <input type="text" name="first_name" class="form-control"
-                                           value="{{ old('first_name', $employee->first_name) }}" required style="border-radius:0;">
+                                           value="{{ old('first_name', $employee->first_name) }}"   style="border-radius:0;">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Last Name <span class="text-danger">*</span></label>
                                     <input type="text" name="last_name" class="form-control"
-                                           value="{{ old('last_name', $employee->last_name) }}" required style="border-radius:0;">
+                                           value="{{ old('last_name', $employee->last_name) }}" style="border-radius:0;">
                                 </div>
 
 
@@ -115,7 +115,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Gender <span class="text-danger">*</span></label>
-                                    <select name="gender" class="form-select" required style="border-radius:0;">
+                                    <select name="gender" class="form-select" style="border-radius:0;">
                                         <option value="">Select</option>
                                         <option value="M" {{ old('gender', $employee->gender) == 'M' ? 'selected' : '' }}>Male</option>
                                         <option value="F" {{ old('gender', $employee->gender) == 'F' ? 'selected' : '' }}>Female</option>
@@ -129,14 +129,14 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Date of Birth <span class="text-danger">*</span></label>
                                     <input type="date" name="date_of_birth" class="form-control"
-                                           value="{{ old('date_of_birth', $employee->date_of_birth) }}" required style="border-radius:0;">
+                                           value="{{ old('date_of_birth', $employee->date_of_birth) }}"  style="border-radius:0;">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Number Card <span class="text-danger">*</span></label>
                                     <input type="text" name="number_card" class="form-control"
-                                           value="{{ old('number_card', $employee->number_card) }}" required style="border-radius:0;">
+                                           value="{{ old('number_card', $employee->number_card) }}"  style="border-radius:0;">
                                 </div>
 
 
@@ -151,7 +151,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-bold">Marital Status <span class="text-danger">*</span></label>
-                                    <select name="marital_status" class="form-select" required style="border-radius:0;">
+                                    <select name="marital_status" class="form-select" style="border-radius:0;">
                                         <option value="">Select</option>
                                         <option value="single"   {{ old('marital_status', $employee->marital_status) == 'single' ? 'selected' : '' }}>Single</option>
                                         <option value="married"  {{ old('marital_status', $employee->marital_status) == 'married' ? 'selected' : '' }}>Married</option>
