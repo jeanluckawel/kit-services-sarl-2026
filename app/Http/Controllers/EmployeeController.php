@@ -418,25 +418,6 @@ class EmployeeController extends Controller
             }
 
 
-
-
-
-
-
-
-
-
-
-            /* ================= DEPENDANTS ================= */
-            if ($request->has('dependants')) {
-                $employee->dependants()->delete();
-                foreach ($request->dependants as $dep) {
-                    if (!empty($dep['full_name'])) {
-                        $employee->dependants()->create($dep);
-                    }
-                }
-            }
-
         });
 
         return redirect()
