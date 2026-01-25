@@ -234,12 +234,12 @@ class EmployeeController extends Controller
         $validated = $request->validate([
             'first_name' => 'sometimes|string',
             'last_name'  => 'sometimes|string',
-            'middle_name'=> 'nullable|string',
-            'gender'     => 'nullable|string',
+            'middle_name'=> 'sometimes|string',
+            'gender'     => 'sometimes|string|in:M,F',
             'date_of_birth' => 'nullable|date',
             'number_card'   => 'nullable|string',
             'pays'          => 'nullable|string',
-            'marital_status'=> 'nullable|string',
+            'marital_status'=> 'nullable|in:single,married,divorced,widowed',
             'photo'         => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
