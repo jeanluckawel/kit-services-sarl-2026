@@ -395,8 +395,6 @@ class EmployeeController extends Controller
                 }
             }
 
-
-
             if (!empty($dependantsData['dependants'])) {
                 foreach ($dependantsData['dependants'] as $dep) {
                     if (!empty($dep['id'])) {

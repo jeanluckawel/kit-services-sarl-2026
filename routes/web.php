@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployeeExport;
 use App\Http\Controllers\EmployeeImportController;
@@ -43,6 +44,19 @@ Route::get('/employee/export/download', [EmployeeExport::class, 'export'])->name
 // search
 Route::get('/employees/search', [EmployeeController::class,'search'])
     ->name('employee.search');
+
+// invoices
+
+
+Route::prefix('customers')->group(function () {
+    Route::get('/', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/create', [CustomerController::class, 'create'])->name('customer.create');
+    Route::post('/store', [CustomerController::class, 'store'])->name('customer.store');
+    Route::get('/{customer}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::put('/{customer}', [CustomerController::class, 'update'])->name('customer.update');
+    Route::delete('/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+});
+
 
 
 
