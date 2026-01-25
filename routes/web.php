@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployeeExport;
 use App\Http\Controllers\EmployeeImportController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,16 @@ Route::get('/employees/{employee}/view', [EmployeeController::class, 'show'])
 
 Route::get('/employee/import', [EmployeeImportController::class, 'show'])->name('employee.import.show');
 Route::post('/employee/import', [EmployeeImportController::class, 'store'])->name('employee.import.store');
+
+// export
+
+Route::get('/employee/export', [\App\Http\Controllers\EmployeeExport::class, 'show'])->name('employee.export.show');
+Route::get('/employee/export/download', [EmployeeExport::class, 'export'])->name('employee.export');
+
+// search
+Route::get('/employees/search', [EmployeeController::class,'search'])
+    ->name('employee.search');
+
 
 
 

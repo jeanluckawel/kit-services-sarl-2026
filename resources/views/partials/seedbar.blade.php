@@ -58,6 +58,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('employee.export.show') }}" class="nav-link">
+                            <i class="nav-icon bi bi-file-earmark-text"></i>
+                            <p>Export</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon bi bi-cash-stack"></i>
                             <p>Salaries</p>

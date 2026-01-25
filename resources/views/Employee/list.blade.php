@@ -21,24 +21,33 @@
                     class="btn btn-tool"
                     title="add new employee"
                     style="
-                    background:#FF6600;
-                    color:#fff;
-                    width:40px;
-                    height:40px;
-                "
+                background:#FF6600;
+                color:#fff;
+                width:40px;
+                height:40px;
+            "
                 >
                     <a href="{{ route('employee.create') }}" class="text-decoration-none" style="color: white; font-size: 20px">
                         <i class="bi bi-plus-lg"></i>
                     </a>
-
-
                 </button>
 
             </div>
         </div>
 
-
         <div class="card-body">
+
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <input
+                        type="text"
+                        id="searchEmployee"
+                        class="form-control"
+                        placeholder="Search by Employee and full name"
+                    >
+                </div>
+            </div>
 
             <div class="table-responsive">
                 <table class="table table-bordered table-hover align-middle text-nowrap">
@@ -55,10 +64,13 @@
                     </tr>
                     </thead>
 
-                    <tbody>
+
+                    <tbody id="employeeTable">
+
                     @foreach($employees as $employee)
                         <tr>
                             <td>{{ $loop->iteration}}</td>
+
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <img
@@ -74,17 +86,23 @@
                                     </div>
                                 </div>
                             </td>
+
                             <td>{{ $employee->address->address ?? 'N/A' }}</td>
+
                             <td>
                                 {{ $employee->date_of_birth ? \Carbon\Carbon::parse($employee->date_of_birth)->age : '-' }}
                             </td>
+
                             <td><strong>1,200 USD</strong></td>
+
                             <td>15/03/2021</td>
+
                             <td><span class="badge text-bg-success">CDI</span></td>
+
                             <td class="text-center">
                                 <div class="d-inline-flex gap-1">
 
-                                    <!-- View -->
+
                                     <a href="{{ route('employee.view', $employee->id) }}"
                                        class="btn btn-sm btn-outline-primary"
                                        title="View">
@@ -97,7 +115,6 @@
                                        title="Edit">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-
 
 
                                     <button
@@ -113,15 +130,14 @@
                                 </div>
                             </td>
 
-
                         </tr>
                     @endforeach
+
                     </tbody>
                 </table>
             </div>
 
         </div>
-
 
         <div class="card-footer clearfix">
             <ul class="pagination pagination-sm m-0 float-end">
@@ -135,7 +151,33 @@
 
     </div>
 
-@include('Employee.Modal.disable')
-
+    @include('Employee.Modal.disable')
 
 @endsection
+
+
+{{-- jQuery --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+
+        $('#searchEmployee').on('keyup', function(){
+
+            let search = $(this).val();
+
+            $.ajax({
+                url: "{{ route('employee.search') }}",
+                type: "GET",
+                data: { search: search },
+                success:function(data){
+                    $('#employeeTable').html(data);
+                }
+            });
+
+        });
+
+    });
+</script>
+
+

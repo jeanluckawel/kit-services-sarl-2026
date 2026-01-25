@@ -454,4 +454,20 @@ class EmployeeController extends Controller
             ->back()
             ->with('success', 'Employee disabled successfully.');
     }
+
+    public function search(Request $request)
+    {
+        $employees = Employee::where('status', 1)
+            ->where(function ($query) use ($request) {
+                $query->where('employee_id', 'like', '%' . $request->search . '%')
+                    ->orWhere('first_name', 'like', '%' . $request->search . '%')
+                    ->orWhere('last_name', 'like', '%' . $request->search . '%')
+                    ->orWhere('middle_name', 'like', '%' . $request->search . '%');
+            })
+            ->get();
+
+        return view('Employee.partials.search-result', compact('employees'));
+    }
+
+
 }
