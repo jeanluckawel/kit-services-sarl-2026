@@ -107,15 +107,15 @@
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label class="form-label fw-bold">
-                                    First Name <span class="text-danger">*</span>
+                                    First Name   <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" name="first_name" class="form-control" placeholder="Jean Luc"
-                                       required autocomplete="off" style="border-radius:0;">
+                                         autocomplete="off" style="border-radius:0;">
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label fw-bold">Last Name <span class="text-danger">*</span></label>
-                                <input type="text" name="last_name" class="form-control" placeholder="Kawel" required
+                                <label class="form-label fw-bold">Last Name   </label>
+                                <input type="text" name="last_name" class="form-control" placeholder="Kawel"
                                        autocomplete="off" style="border-radius:0;">
                             </div>
                             <div class="col-md-4">
@@ -124,8 +124,8 @@
                                        autocomplete="off" style="border-radius:0;">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label fw-bold">Gender<span class="text-danger">*</span></label>
-                                <select name="gender" required class="form-select" style="border-radius:0;">
+                                <label class="form-label fw-bold">Gender  </label>
+                                <select name="gender"   class="form-select" style="border-radius:0;">
                                     <option value="">Select</option>
                                     <option value="M">Male</option>
                                     <option value="F">Female</option>
@@ -135,19 +135,19 @@
                             <div class="col-md-4">
                                 <label class="form-label fw-bold">Date of Birth <span
                                         class="text-danger">*</span></label>
-                                <input type="date" name="date_of_birth" required class="form-control"
+                                <input type="date" name="date_of_birth"   class="form-control"
                                        style="border-radius:0;">
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label fw-bold">Number Card <span class="text-danger">*</span></label>
-                                <input type="text" name="number_card" required class="form-control"
+                                <label class="form-label fw-bold">Number Card   </label>
+                                <input type="text" name="number_card"   class="form-control"
                                        placeholder="NN338638245 / OP87974" autocomplete="off" style="border-radius:0;">
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label fw-bold">Country <span class="text-danger">*</span></label>
-                                <select name="pays" id="country" class="form-select" required style="border-radius:0;">
+                                <label class="form-label fw-bold">Country   </label>
+                                <select name="pays" id="country" class="form-select"   style="border-radius:0;">
                                     <option value="">Select Country</option>
                                 </select>
                             </div>
@@ -156,7 +156,7 @@
                             <div class="col-md-4">
                                 <label class="form-label fw-bold">Marital Status <span
                                         class="text-danger">*</span></label>
-                                <select name="marital_status" required class="form-select" style="border-radius:0;">
+                                <select name="marital_status"   class="form-select" style="border-radius:0;">
                                     <option value="">Select</option>
                                     <option value="single">Single</option>
                                     <option value="married">Married</option>
@@ -171,24 +171,24 @@
                     <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">Number <span class="text-danger">*</span></label>
+                                <label class="form-label fw-bold">Number   </label>
                                 <input type="text" name="employee_number" class="form-control" placeholder="6"
-                                       autocomplete="off" required style="border-radius:0;">
+                                       autocomplete="off"   style="border-radius:0;">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">City <span class="text-danger">*</span></label>
+                                <label class="form-label fw-bold">City   </label>
                                 <input type="text" name="employee_city" class="form-control" placeholder="Manika"
-                                       autocomplete="off" required style="border-radius:0;">
+                                       autocomplete="off"   style="border-radius:0;">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">Province <span class="text-danger">*</span></label>
+                                <label class="form-label fw-bold">Province   </label>
                                 <input type="text" name="employee_province" class="form-control" placeholder="Lualaba"
-                                       autocomplete="off" required style="border-radius:0;">
+                                       autocomplete="off"   style="border-radius:0;">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">Phone <span class="text-danger">*</span></label>
+                                <label class="form-label fw-bold">Phone   </label>
                                 <input type="text" name="employee_phone" class="form-control"
-                                       placeholder="+243 974 453 545" autocomplete="off" required
+                                       placeholder="+243 974 453 545" autocomplete="off"
                                        style="border-radius:0;">
                             </div>
                             <div class="col-md-6">
@@ -197,9 +197,9 @@
                                        placeholder="+243 830 835 071" autocomplete="off" style="border-radius:0;">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">Email <span class="text-danger">*</span></label>
+                                <label class="form-label fw-bold">Email   </label>
                                 <input type="email" name="employee_email" class="form-control"
-                                       placeholder="jeanluckawel45@mail.com" autocomplete="off" required
+                                       placeholder="jeanluckawel45@mail.com" autocomplete="off"
                                        style="border-radius:0;">
                             </div>
                         </div>
@@ -213,9 +213,9 @@
                             <!-- Job Title -->
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    Job Title <span class="text-danger">*</span>
+                                    Job Title
                                 </label>
-                                <select name="job_title" class="form-select" required style="border-radius:0;">
+                                <select name="job_title" class="form-select"   style="border-radius:0;">
                                     <option value="">Select Job Title</option>
                                     <option value="Accountant">Accountant</option>
                                     <option value="HR Officer">HR Officer</option>
@@ -228,9 +228,9 @@
                             <!-- Department -->
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    Department <span class="text-danger">*</span>
+                                    Department
                                 </label>
-                                <select name="department" class="form-select" required style="border-radius:0;">
+                                <select name="department" class="form-select"   style="border-radius:0;">
                                     <option value="">Select Department</option>
                                     <option value="HR">HR</option>
                                     <option value="Finance">Finance</option>
@@ -243,9 +243,9 @@
                             <!-- Section -->
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    Section <span class="text-danger">*</span>
+                                    Section
                                 </label>
-                                <select name="section" class="form-select" required style="border-radius:0;">
+                                <select name="section" class="form-select"   style="border-radius:0;">
                                     <option value="">Select Section</option>
                                     <option value="Payroll">Payroll</option>
                                     <option value="Recruitment">Recruitment</option>
@@ -257,10 +257,10 @@
                             <!-- Contract Type -->
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    Contract Type <span class="text-danger">*</span>
+                                    Contract Type
                                 </label>
                                 <select name="contract_type" id="contract_type" class="form-select"
-                                        required style="border-radius:0; color:#ff6600;">
+                                          style="border-radius:0; color:#ff6600;">
                                     <option value="">Select Contract Type</option>
                                     <option value="CDI">CDI</option>
                                     <option value="CDD">CDD</option>
@@ -272,16 +272,16 @@
                             <!-- Hire Date -->
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    Hire Date <span class="text-danger">*</span>
+                                    Hire Date
                                 </label>
                                 <input type="date" name="hire_date" class="form-control"
-                                       required style="border-radius:0;">
+                                         style="border-radius:0;">
                             </div>
 
                             <!-- End Contract Date -->
                             <div class="col-md-6 d-none" id="endContractWrapper">
                                 <label class="form-label fw-bold">
-                                    End Contract Date <span class="text-danger">*</span>
+                                    End Contract Date
                                 </label>
                                 <input type="date" name="end_contract_date"
                                        class="form-control" style="border-radius:0;">
@@ -290,9 +290,9 @@
                             <!-- Work Location -->
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    Work Location <span class="text-danger">*</span>
+                                    Work Location
                                 </label>
-                                <select name="work_location" class="form-select" required style="border-radius:0;">
+                                <select name="work_location" class="form-select"  style="border-radius:0;">
                                     <option value="">Select Work Location</option>
                                     <option value="Head Office">Head Office</option>
                                     <option value="Site A">Site A</option>
@@ -304,10 +304,10 @@
                             <!-- Supervisor -->
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    Supervisor <span class="text-danger">*</span>
+                                    Supervisor
                                 </label>
                                 <select name="supervisor" class="form-select"
-                                        required style="border-radius:0;">
+                                         style="border-radius:0;">
                                     <option value="">Select Supervisor</option>
                                     <option value="HR Manager">HR Manager</option>
                                     <option value="Operations Manager">Operations Manager</option>
@@ -318,10 +318,10 @@
                             <!-- Employee Type -->
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    Employee Type <span class="text-danger">*</span>
+                                    Employee Type
                                 </label>
                                 <select name="employee_type" class="form-select"
-                                        required style="border-radius:0; color:#ff6600;">
+                                         style="border-radius:0; color:#ff6600;">
                                     <option value="">Select Employee Type</option>
                                     <option value="Full Time">Full Time</option>
                                     <option value="Part Time">Part Time</option>
@@ -697,10 +697,10 @@
 
             if (['CDD', 'Stage', 'Consultant'].includes(this.value)) {
                 endWrapper.classList.remove('d-none');
-                endInput.setAttribute('required', 'required');
+                endInput.setAttribute('', ' ');
             } else {
                 endWrapper.classList.add('d-none');
-                endInput.removeAttribute('required');
+                endInput.removeAttribute('');
                 endInput.value = '';
             }
         });

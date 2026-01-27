@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('employee_id');
-            $table->decimal('base_salary', 15, 2)->default(0);
+            $table->decimal('base_salary', 15, 2)->default(0)->nullable();
             $table->string('category')->nullable();
             $table->string('echelon')->nullable();
-            $table->enum('currency', ['USD','CDF'])->default('USD');
+            $table->enum('currency', ['USD','CDF'])->default('USD')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('employee_id');
             $table->string('job_title')->nullable();
-            $table->string('department');
+            $table->string('department')->nullable();
             $table->string('section')->nullable();
 
             $table->enum('contract_type', ['CDI', 'CDD', 'Stage', 'Consultant'])->nullable();

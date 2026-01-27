@@ -76,28 +76,13 @@
 
                             <td>
                                 <div class="d-flex align-items-center gap-2">
-
-                                    @php
-
-                                        $initials = strtoupper(substr($employee->first_name,0,1) . substr($employee->last_name,0,1));
-
-                                        $bgColor = '#ff7f00';
-                                    @endphp
-
-                                    @if($employee->photo)
-                                        <img src="{{ asset('storage/'.$employee->photo) }}"
-                                             alt="Photo"
-                                             class="rounded-circle"
-                                             width="45"
-                                             height="45">
-                                    @else
-                                        <div class="rounded-circle d-flex justify-content-center align-items-center"
-                                             style="width:45px; height:45px; background-color: {{ $bgColor }}; color:white; font-weight:bold; font-size:16px;">
-                                            {{ $initials }}
-                                        </div>
-                                    @endif
-
-
+                                    <img
+                                        src="{{ asset('storage/', $employee->photo) }}"
+                                        alt="Employee Photo"
+                                        class="rounded-circle"
+                                        width="45"
+                                        height="45"
+                                    >
                                     <div>
                                         <strong>{{ $employee->first_name }}</strong><br>
                                         <small class="text-muted">{{ $employee->employee_id }}</small>
@@ -108,9 +93,7 @@
                             <td>{{ $employee->company->department ?? 'N/A' }}</td>
 
                             <td>
-
-                                {{ $employee->age >= 1 ? $employee->age . ' ' . ($employee->age > 1 ? 'ans' : 'an') : '-' }}
-
+                                {{ $employee->age }}ans
                             </td>
 
                             <td><strong>{{ number_format($employee->salaries->base_salary,2 ?? 'N/A' ) }}</strong></td>

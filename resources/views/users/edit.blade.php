@@ -44,6 +44,7 @@
                                    value="{{ old('email', $user->email) }}"
                                    class="form-control"
                                    style="border-radius:0;"
+                                   disabled
                                    required>
                         </div>
                     </div>
@@ -67,9 +68,12 @@
                             <label class="fw-bold">Role</label>
                             <select name="role" class="form-select" style="border-radius:0;">
                                 <option value="">-- Select Role --</option>
-                                <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                                <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
-                                <option value="manager" {{ $user->role == 'manager' ? 'selected' : '' }}>Manager</option>
+                                @foreach($roles as $role)
+                                    <option value="{{ $role->id }}"
+                                        {{ (old('role', $user->id) == $role->id) ? 'selected' : '' }}>
+                                        {{ $role->name }}
+                                    </option>)
+                                @endforeach
                             </select>
                         </div>
                     </div>

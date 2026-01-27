@@ -1,51 +1,65 @@
 <!doctype html>
 <html lang="en">
-<!--begin::Head-->
 <head>
+    <meta charset="utf-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>@yield('title','KIT SERVICES SARL')</title>
-    <!--begin::Accessibility Meta Tags-->
+    <title>@yield('title', 'KIT SERVICES SARL')</title>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
     <meta name="color-scheme" content="light dark"/>
     <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)"/>
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)"/>
-
-    <meta name="title" content="KIT SERVICES SARLe"/>
-    <meta name="author" content="Jean Luc Kawel"/>
-    <meta
-            name="description"
-            content=""
-    />
-    <meta
-            name="keywords"
-            content=""
-    />
     <meta name="supported-color-schemes" content="light dark"/>
+
+
+    <meta name="title" content="Kit Services SARL"/>
+    <meta name="author" content="Jean Luc Kawel"/>
+    <meta name="description" content="Connect to Kit Services to manage employees, clients, invoices, and more."/>
+    <meta name="keywords" content="Kit Services, employee management, client management, invoices, HR, business management"/>
+
+
+    <link rel="icon" href="{{ asset('logo/img.png') }}" type="image/png"/>
+
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Kit Services"/>
+    <meta property="og:description" content="Connect to Kit Services to manage employees, clients, invoices, and more."/>
+    <meta property="og:image" content="{{ asset('logo/img.png') }}"/>
+    <meta property="og:url" content="{{ url()->current() }}"/>
+    <meta property="og:site_name" content="Kit Services"/>
+
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Kit Services | Login"/>
+    <meta name="twitter:description" content="Connect to Kit Services to manage employees, clients, invoices, and more."/>
+    <meta name="twitter:image" content="{{ asset('logo/img.png') }}"/>
+    <meta name="twitter:site" content="@KitServices"/>
+
+
     <link rel="preload" href="{{ asset('css/adminlte.css') }}" as="style"/>
     <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
-            integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
-            crossorigin="anonymous"
-            media="print"
-            onload="this.media='all'"
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+        integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
+        crossorigin="anonymous"
+        media="print"
+        onload="this.media='all'"
     />
-
     <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
-            crossorigin="anonymous"
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+        crossorigin="anonymous"
     />
-
     <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-            crossorigin="anonymous"
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        crossorigin="anonymous"
     />
 
     <link rel="stylesheet" href="{{ asset('css/adminlte.css') }}"/>
-
 </head>
+
 
 <body
         class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary"
@@ -131,7 +145,10 @@
                             </li>
 
                             <li class="user-footer">
-                                <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('users.edit', auth()->user()->id) }}" class="btn btn-default btn-flat">
+                                    Profile
+                                </a>
+
                                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-default btn-flat float-end">Sign out</button>
@@ -153,22 +170,24 @@
     <!--begin::Sidebar-->
     <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
-        <div class="sidebar-brand">
+        <div class="sidebar-brand" style="background-color: #ffffff; padding: 0.5rem 1rem; border-bottom: 2px solid #ff7f00;">
             <!--begin::Brand Link-->
-            <a href="{{ route('dashboard') }}" class="brand-link">
+            <a href="{{ route('dashboard') }}" class="brand-link d-flex align-items-center text-dark text-decoration-none">
                 <!--begin::Brand Image-->
                 <img
-                        src="{{ asset('logo/img.png') }}"
-                        alt="kit service sarl Logo"
-                        class="brand-image opacity-75 shadow"
+                    src="{{ asset('logo/img.png') }}"
+                    alt="Kit Service Sarl Logo"
+                    class="brand-image me-2 shadow"
+                    style="opacity:1; width:80px; height:auto;"
                 />
                 <!--end::Brand Image-->
                 <!--begin::Brand Text-->
-                <span class="brand-text fw-light">Kit services</span>
+                <span class="brand-text fw-bold" style="color:#ff7f00;">Kit Services</span>
                 <!--end::Brand Text-->
             </a>
             <!--end::Brand Link-->
         </div>
+
         <!--end::Sidebar Brand-->
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">

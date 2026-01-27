@@ -67,6 +67,21 @@
                     </a>
                 </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('employee.cdd') }}" class="nav-link">
+                            <i class="nav-icon bi bi-file-earmark-text"></i>
+                            <p>CDD</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('employee.cdi') }}" class="nav-link">
+                            <i class="nav-icon bi bi-file-earmark-check"></i>
+                            <p>CDI</p>
+                        </a>
+                    </li>
+
+
                 @endcan
 
             @endif

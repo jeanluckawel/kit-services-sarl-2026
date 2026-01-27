@@ -10,6 +10,7 @@ use App\Models\Employee\Emergency;
 use App\Models\Employee\Employee;
 use App\Models\Employee\Salary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,8 +42,8 @@ class EmployeeController extends Controller
     {
 
         $validated = $request->validate([
-            'first_name' => 'required|string',
-            'last_name'  => 'required|string',
+            'first_name' => 'nullable| string',
+            'last_name'  => 'nullable| string',
             'middle_name'=> 'nullable|string',
             'gender'     => 'nullable|string',
             'date_of_birth' => 'nullable|date',
@@ -54,11 +55,11 @@ class EmployeeController extends Controller
 
 
         $addressData = $request->validate([
-            'employee_number' => 'required|string',
-            'employee_city'   => 'required|string',
-            'employee_province' => 'required|string',
-            'employee_phone'  => 'required|string',
-            'employee_email'  => 'required|email',
+            'employee_number' => ' string',
+            'employee_city'   => ' string',
+            'employee_province' => ' string',
+            'employee_phone'  => ' string',
+            'employee_email'  => ' email',
             'employee_emergency_phone' => 'nullable|string',
         ]);
         $addressData = [
@@ -72,11 +73,11 @@ class EmployeeController extends Controller
 
 
         $companyData = $request->validate([
-            'job_title' => 'required|string',
-            'department'=> 'required|string',
-            'section'   => 'required|string',
-            'contract_type' => 'required|in:CDI,CDD,Stage,Consultant',
-            'hire_date' => 'required|date',
+            'job_title' => ' string',
+            'department'=> ' string',
+            'section'   => ' string',
+            'contract_type' => ' in:CDI,CDD,Stage,Consultant',
+            'hire_date' => ' date',
             'end_contract_date' => [
                 'nullable',
                 'date',
@@ -86,9 +87,9 @@ class EmployeeController extends Controller
                     }
                 },
             ],
-            'work_location' => 'required|string',
-            'supervisor' => 'required|string',
-            'employee_type' => 'required|in:Full Time,Part Time',
+            'work_location' => ' string',
+            'supervisor' => ' string',
+            'employee_type' => ' in:Full Time,Part Time',
         ]);
 
 
@@ -96,7 +97,7 @@ class EmployeeController extends Controller
             'salary_base_salary' => 'nullable|numeric',
             'salary_category'    => 'nullable|string',
             'salary_echelon'     => 'nullable|string',
-            'salary_currency'    => 'required|in:USD,CDF',
+            'salary_currency'    => ' in:USD,CDF',
         ]);
         $salaryData = [
             'base_salary' => $salaryRequest['salary_base_salary'] ?? 0,
@@ -121,15 +122,15 @@ class EmployeeController extends Controller
 
 
         $childrenRequest = $request->validate([
-            'children.*.full_name'     => 'required|string',
-            'children.*.date_of_birth' => 'required|date',
-            'children.*.gender'        => 'required|in:M,F',
+            'children.*.full_name'     => ' string',
+            'children.*.date_of_birth' => ' date',
+            'children.*.gender'        => ' in:M,F',
         ]);
 
         $dependantsRequest = $request->validate([
             'dependants'                => 'nullable|array',
-            'dependants.*.relationship' => 'required|string',
-            'dependants.*.full_name'    => 'required|string',
+            'dependants.*.relationship' => ' string',
+            'dependants.*.full_name'    => ' string',
             'dependants.*.phone'        => 'nullable|string',
             'dependants.*.address'      => 'nullable|string',
         ]);
@@ -290,7 +291,7 @@ class EmployeeController extends Controller
         $childrenData = $request->validate([
             'children' => 'nullable|array',
             'children.*.id' => 'nullable|exists:childrens,id',
-            'children.*.child_full_name' => 'required|string|max:255',
+            'children.*.child_full_name' => ' string|max:255',
             'children.*.child_date_of_birth' => 'nullable|date',
             'children.*.child_gender' => 'nullable|in:M,F',
         ]);
@@ -298,7 +299,7 @@ class EmployeeController extends Controller
         $dependantsData = $request->validate([
             'dependants' => 'nullable|array',
             'dependants.*.id' => 'nullable|exists:dependants,id',
-            'dependants.*.dep_full_name' => 'required|string|max:255',
+            'dependants.*.dep_full_name' => ' string|max:255',
             'dependants.*.dep_relationship' => 'nullable|in:Father,Mother,Spouse,Brother,Sister,Mr,Mrs,Dr',
             'dependants.*.dep_phone' => 'nullable|string|max:20',
             'dependants.*.dep_address' => 'nullable|string|max:255',
@@ -465,6 +466,68 @@ class EmployeeController extends Controller
             ->get();
 
         return view('Employee.partials.search-result', compact('employees'));
+    }
+
+    public function cdd()
+    {
+        $employees = Employee::where('status', 1)
+            ->whereHas('company', function ($q) {
+                $q->where('contract_type', 'CDD');
+            })
+            ->get();
+
+        return view('Employee.cdd', compact('employees'));
+    }
+
+    public function cdi()
+    {
+        $employees = Employee::with(['company','salaries'])
+            ->where('status', 1)
+            ->whereHas('company', function ($q) {
+                $q->where('contract_type', 'CDI');
+            })
+            ->get();
+
+        return view('Employee.cdi', compact('employees'));
+    }
+
+    public function finContrat($id)
+    {
+        $employee = Employee::with(['company','salaries'])
+            ->findOrFail($id);
+
+
+        if (!$employee->company || $employee->company->contract_type !== 'CDD') {
+            return redirect()->back()
+                ->with('error', 'Cet employé n\'est pas sous contrat CDD.');
+        }
+
+
+        $endDate = $employee->company->end_contract_date;
+
+        $daysLeft = null;
+
+        if ($endDate) {
+            $daysLeft = Carbon::now()->diffInDays(
+                Carbon::parse($endDate),
+                false
+            );
+        }
+
+        return view('Employee.document.fin-contract', compact(
+            'employee',
+            'daysLeft',
+            'endDate'
+        ));
+
+    }
+    public function certificat($id)
+    {
+        $employee = Employee::with(['company','salaries'])
+            ->findOrFail($id);
+
+        return view('Employee.document.certificat', compact('employee'));
+
     }
 
 

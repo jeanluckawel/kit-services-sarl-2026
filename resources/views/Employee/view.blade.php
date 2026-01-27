@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 @extends('layoutsddd.app')
 
 @section('title', 'Kit Service | Profil')
@@ -73,12 +74,20 @@
 
             <!-- Photo et tableau -->
             <div class="row mb-2">
-                <div class="col-md-2 text-center mb-2 mb-md-0">
+                <div class="col-md-2 text-center mb-5 mb-md-0 ">
                     <div class="border bg-light d-flex align-items-center justify-content-center photo-box"
-                         style="width:128px; height:160px; font-size:10px;">
-                        Photo
+                         style="width:128px; height:160px; font-size:10px; overflow:hidden;">
+
+                        @if($employee->photo)
+                            <img src="{{ asset('storage/' . $employee->photo) }}"
+                                 alt="Photo de {{ $employee->full_name ?? '' }}"
+                                 style="width:100%; height:100%; object-fit:cover;">
+                        @else
+                            Photo
+                        @endif
                     </div>
                 </div>
+
 
                 <div class="col-md-10 table-responsive">
                     <table class="table table-bordered table-sm mb-0" style="font-size:11px;">
@@ -96,19 +105,19 @@
                             <td>Prénom</td>
                             <td>{{ $employee->last_name ?? 'N/A' }}</td>
                             <td>Situation familiale</td>
-                            <td>Célibataire</td>
+                            <td>{{ $employee->marital_status ?? 'N/A' }}</td>
                         </tr>
                         <tr>
                             <td>Post nom</td>
                             <td>{{ $employee->middle_name ?? 'N/A' }}</td>
                             <td>Nombre d'enfants à charge</td>
-                            <td>{{ $employee->children->count() ?? 'N/A' }}</td>
+                            <td>{{ $employee->children->count() ?? '0' }}</td>
                         </tr>
                         <tr>
                             <td>Nombre de personnes à charge</td>
                             <td>{{ $employee->last_name ?? 'N/A' }}</td>
                             <td>Date de naissance</td>
-                            <td>{{ $employee->date_of_birth ? \Carbon\Carbon::parse($employee->date_of_birth)->format('d M Y') : 'N/A' }}</td>
+                            <td>{{ $employee->date_of_birth ? Carbon::parse($employee->date_of_birth)->format('d M Y') : 'N/A' }}</td>
                         </tr>
                         <tr>
                             <td>Département</td>
@@ -127,18 +136,22 @@
                         <tr class="table-secondary">
                             <th colspan="4">Informations Familiales</th>
                         </tr>
-                        <tr>
-                            <td>Nom du père </td>
-                            <td>{{ $employee->Dependant->full_name ?? 'N/A'}}</td>
-                            <td>Statut</td>
-                            <td>Décédé</td>
-                        </tr>
-                        <tr>
-                            <td>Nom de la mère</td>
-                            <td>{{ $employee->Dependant->full_name ?? 'N/A'}}</td>
-                            <td>Statut</td>
-                            <td>En vie</td>
-                        </tr>
+                        @forelse($employee->dependants as $dependant)
+                            @if(strtolower($dependant->relationship) !== 'spouse')
+                                <tr>
+                                    <td>{{ $dependant->relationship ?? 'N/A' }}</td>
+                                    <td>{{ $dependant->full_name ?? 'N/A' }}</td>
+                                    <td>{{ $dependant->phone ?? 'N/A' }}</td>
+                                    <td>{{ $dependant->address ?? 'N/A' }}</td>
+                                </tr>
+                            @endif
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">Aucun dépendant enregistré</td>
+                            </tr>
+                        @endforelse
+
+
 
                         <!-- Professionnelles -->
                         <tr class="table-secondary">
@@ -146,47 +159,109 @@
                         </tr>
                         <tr>
                             <td>Adresse complète</td>
-                            <td colspan="3">{{ $employee->Address->city}}</td>
+                            <td colspan="3">
+                                {{
+                                    ($employee->address->number
+                                        ? 'N)' . $employee->address->number
+                                        : ''
+                                    )
+
+                                    . ','.
+
+                                    ($employee->address->city
+                                        ? ' Avenue ' . $employee->address->city
+                                        : ''
+                                    )
+
+                                              . ','.
+
+                                    ($employee->address->province
+                                        ? ' quartier ' . $employee->address->province
+                                        : ''
+                                    )
+
+                                          . ','.
+
+                                    ($employee->address->emergency_phone
+                                        ? ' province ' . $employee->address->emergency_phone
+                                        : ''
+                                    )
+
+                                       . ','.
+
+                                    ($employee->pays
+                                        ? ' ' . $employee->pays
+                                        : ''
+                                    )
+                                }}
+                            </td>
+
                         </tr>
                         <tr>
                             <td>Emploi / Poste</td>
-                            <td colspan="3">{{ $employee->Company->job_title ?? 'N/A' }}</td>
+                            <td colspan="3">{{ $employee->company->job_title ?? 'N/A' }}</td>
                         </tr>
                         <tr>
                             <td>Classification;</td>
-                            <td>{{ $employee->Company->department ?? 'N/A' }}</td>
+                            <td>{{ $employee->company->department ?? 'N/A' }}</td>
                             <td>Position</td>
-                            <td>Senior</td>
+                            <td>{{ $employee->company->job_titles }}</td>
                         </tr>
                         <tr>
                             <td>Niveau</td>
-                            <td>2</td>
+                            <td>{{ $employee->salaries->category }}</td>
                             <td>Coefficient</td>
                             <td>{{ number_format($employee->salaries->base_salary,2 ?? 'N/A' ) }}</td>
                         </tr>
                         <tr>
                             <td>Échelon</td>
-                            <td>1</td>
+                            <td>{{ $employee->salaries->echelon }}</td>
                             <td>Taux horaire brut (FC)</td>
                             <td>FC 600</td>
                         </tr>
                         <tr>
                             <td>Salaire mensuel brut</td>
-                            <td>$ 1200.00</td>
-                            <td>Horaire hebdomadaire & répartition</td>
-                            <td>$ 300.00</td>
+                            <td>{{ $employee->salaries->currency .' ' . number_format ($employee->salaries->base_salary,2 )?? ''}}</td>
+                            @php
+                                $currency = $employee->salaries->currency ?? '';
+                                $salary   = $employee->salaries->base_salary ?? 0;
+
+                                $contractType = strtolower($employee->company->contract_type ?? 'full time');
+
+                                if($contractType == 'part time'){
+                                    $hoursPerDay = 4;
+                                } else {
+                                    $hoursPerDay = 8; // Full Time
+                                }
+
+                                $daysPerWeek = 5;
+                                $weeksPerMonth = 4;
+
+                                $monthlyHours = $hoursPerDay * $daysPerWeek * $weeksPerMonth;
+
+                                $hourlySalary = $monthlyHours > 0 ? $salary / $monthlyHours : 0;
+                                $dailySalary  = $hourlySalary * $hoursPerDay;
+                                $weeklySalary = $dailySalary * $daysPerWeek;
+                            @endphp
+                            <td>Horaire hebdomadaire </td>
+                            <td>
+                                {{ $currency }} {{ number_format($hourlySalary,2) }}
+                            </td>
                         </tr>
                         <tr>
                             <td>Date d'embauche</td>
-                            <td>01 Jan 2020</td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($employee->company->hire_date)->translatedFormat('d F Y') }}
+                            </td>
+
                             <td>Numéro matricule</td>
                             <td>{{ $employee->employee_id }}</td>
                         </tr>
                         <tr>
                             <td>Type de contrat</td>
-                            <td>{{ $employee->Company->contract_type ?? 'N/A'}}</td>
-                            <td>Situation avant embauche</td>
-                            <td>Étudiant</td>
+                            <td>{{ $employee->company->contract_type ?? 'N/A'}}</td>
+                            <td>Lieu de travail</td>
+                            <td>{{ $employee->company->work_location ?? 'N/A'}}</td>
                         </tr>
 
                         <!-- Conjoint & Enfants -->
@@ -195,7 +270,17 @@
                         </tr>
                         <tr>
                             <td>Nom du conjoint(e)</td>
-                            <td colspan="3">Jane Doe</td>
+                            @forelse($employee->dependants as $dependant)
+                                @if(strtolower($dependant->relationship) === 'spouse')
+                                    <td colspan="3">
+                                        {{ $dependant->full_name ?? 'N/A' }} -
+                                        {{ $dependant->phone ?? 'N/A' }} -
+                                        {{ $dependant->address ?? 'N/A' }}
+                                    </td>
+                                @endif
+                            @empty
+                                <td colspan="3" class="text-center">Aucun conjoint enregistré</td>
+                            @endforelse
                         </tr>
                         <tr>
                             <td colspan="4">
@@ -205,26 +290,28 @@
                                         <tr>
                                             <th>N°</th>
                                             <th>Prénom</th>
-                                            <th>Nom</th>
                                             <th>Date de naissance</th>
-                                            <th>☐ Décédé ☐ En vie</th>
+                                            <th>Genre</th>
+                                            <th>Age</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td class="text-center">1</td>
-                                            <td>Child1</td>
-                                            <td>Doe</td>
-                                            <td>01/01/2010</td>
-                                            <td class="text-center">☐ Décédé ☑ En vie</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">2</td>
-                                            <td>Child2</td>
-                                            <td>Doe</td>
-                                            <td>01/01/2012</td>
-                                            <td class="text-center">☐ Décédé ☑ En vie</td>
-                                        </tr>
+                                        @foreach($employee->children as $child)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td>{{ $child->full_name }}</td>
+                                                @php
+                                                    $age = Carbon::parse($child->date_of_birth)->age;
+                                                @endphp
+                                                <td>{{ $child->gender }}</td>
+                                                <td>
+                                                    {{ $age }} an{{ $age > 1 ? 's' : '' }}
+                                                </td>
+                                                <td>
+                                                    {{ Carbon::parse($child->date_of_birth)->translatedFormat('d F Y') }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -250,9 +337,9 @@
                                         <tbody>
                                         <tr>
                                             <td class="text-center">1</td>
-                                            <td>Parent Doe</td>
-                                            <td>Kinshasa</td>
-                                            <td>+243 999 999 999</td>
+                                            <td>{{ $employee->emergencies->full_name ?? '' }}</td>
+                                            <td>{{ $employee->emergencies->address ?? '' }}</td>
+                                            <td>{{ $employee->emergencies->phone ?? '' }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
