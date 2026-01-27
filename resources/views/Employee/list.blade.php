@@ -61,6 +61,7 @@
                         <th>Age</th>
                         <th>Salary</th>
                         <th>Hire Date</th>
+                        
                         <th>Contract</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -89,17 +90,17 @@
                                 </div>
                             </td>
 
-                            <td>{{ $employee->address->address ?? 'N/A' }}</td>
+                            <td>{{ $employee->company->department ?? 'N/A' }}</td>
 
                             <td>
-                                {{ $employee->date_of_birth ? \Carbon\Carbon::parse($employee->date_of_birth)->age : '-' }}
+                                {{ $employee->age }}ans
                             </td>
 
-                            <td><strong>1,200 USD</strong></td>
+                            <td><strong>{{ number_format($employee->salaries->base_salary,2 ?? 'N/A' ) }}</strong></td>
 
-                            <td>15/03/2021</td>
+                            <td>{{ $employee->company->hire_date ?? 'N/A'}}</td>
 
-                            <td><span class="badge text-bg-success">CDI</span></td>
+                            <td>{{$employee->company->contract_type}}</td>
 
                             <td class="text-center">
                                 <div class="d-inline-flex gap-1">

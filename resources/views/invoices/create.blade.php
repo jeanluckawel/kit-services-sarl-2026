@@ -81,7 +81,7 @@
 
                 <button type="button" class="btn btn-warning text-white btn-sm mb-4" style="background-color:#FF6600;border-color:#FF6600;" onclick="addRow()">➕</button>
 
-                {{-- Preview en temps réel --}}
+
                 <div class="card mt-4" style="border-radius:0;">
                     <div class="card-header fw-bold" style="background:#f8f9fa;">Proforma Invoice Preview</div>
                     <div class="card-body p-0">

@@ -14,13 +14,13 @@
                 <form action="{{ route('roles.store') }}" method="POST">
                     @csrf
 
-                    <!-- Role Name -->
+
                     <div class="mb-2">
                         <label for="role_name" class="form-label fw-semibold small text-secondary">Role Name</label>
                         <input type="text" id="role_name" name="name" class="form-control form-control-sm border-1" placeholder="Enter role name" required style="font-size: 0.85rem; padding: 4px 8px;">
                     </div>
 
-                    <!-- Permissions -->
+
                     <div class="mb-2">
                         <h6 class="fw-bold text-orange-600 small mb-1" style="font-size: 0.85rem;">Permissions</h6>
 
@@ -100,13 +100,13 @@
         const previewPermissions = document.getElementById('preview-permissions');
         const permissionTags = document.querySelectorAll('.permission-tag');
 
-        // Toggle permission tags
+
         permissionTags.forEach(tag => {
             tag.addEventListener('click', function() {
                 this.classList.toggle('active');
                 this.querySelector('input[type="checkbox"]').checked = !this.querySelector('input[type="checkbox"]').checked;
 
-                // update preview
+
                 const selected = Array.from(permissionTags)
                     .filter(t => t.classList.contains('active'))
                     .map(t => t.textContent.trim());
@@ -114,7 +114,7 @@
             });
         });
 
-        // Update role name preview
+
         roleNameInput.addEventListener('input', () => {
             previewRoleName.textContent = roleNameInput.value || '-';
         });

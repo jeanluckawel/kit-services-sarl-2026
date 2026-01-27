@@ -6,11 +6,11 @@
 
     <div class="d-flex justify-content-center my-5">
 
-        <!-- Facture centrée -->
+
         <div id="invoice-content" class="shadow p-5 bg-white"
              style="max-width: 21cm; min-height: 29.7cm; font-size: 14px; box-sizing: border-box;">
 
-            <!-- Header -->
+
             <div class="row border-bottom pb-3 mb-4">
                 <div class="col-md-4">
                     <h4 class="text-orange fw-bold">KIT SERVICE SARL</h4>
@@ -51,14 +51,14 @@
                 </div>
             </div>
 
-            <!-- Client résumé -->
+
             <div class="mb-4">
                 <h6 class="fw-semibold">Customer</h6>
                 <p class="mb-0"><i>{{ $customer->name }}</i></p>
                 <p><i>{{ $customer->ville }} - {{ $customer->province }}</i></p>
             </div>
 
-            <!-- Table des détails facture -->
+
             <div class="table-responsive">
                 <table class="table table-bordered table-sm">
                     <thead class="table-light">
@@ -112,7 +112,7 @@
                 </div>
             </div>
 
-            <!-- Infos bancaires -->
+
             <div class="mt-5">
                 <h6 class="fw-semibold text-decoration-underline">Bank details</h6>
                 <p>Nom de la banque : RAWBANK</p>
@@ -121,7 +121,7 @@
                 <p>Swift code : RAWBCDRC</p>
             </div>
 
-            <!-- Footer -->
+
             <div class="mt-4 text-muted">
                 <p>Thank you for your business!</p>
                 <p>For any inquiries, please contact us at <a href="mailto:kitservice17@gmail.com" class="text-decoration-underline">kitservice17@gmail.com</a></p>
@@ -131,13 +131,12 @@
 
     </div>
 
-    <!-- Boutons centrés sous la facture -->
+
     <div class="d-flex justify-content-center mt-4 gap-2">
         <button onclick="goBackSmooth()" class="btn btn-danger btn-sm">Retour</button>
         <button onclick="downloadPDF()" class="btn btn-dark btn-sm">Télécharger PDF</button>
     </div>
 
-    <!-- Scripts -->
     <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
     <script>
         function goBackSmooth() {
@@ -167,7 +166,7 @@
             margin-right: auto;
         }
 
-        /* Texte un peu plus grand */
+
         #invoice-content p,
         #invoice-content td,
         #invoice-content th,

@@ -128,14 +128,14 @@
                             <th colspan="4">Informations Familiales</th>
                         </tr>
                         <tr>
-                            <td>Nom du père</td>
-                            <td>Robert Doe</td>
+                            <td>Nom du père </td>
+                            <td>{{ $employee->Dependant->full_name ?? 'N/A'}}</td>
                             <td>Statut</td>
                             <td>Décédé</td>
                         </tr>
                         <tr>
                             <td>Nom de la mère</td>
-                            <td>Mary Smith</td>
+                            <td>{{ $employee->Dependant->full_name ?? 'N/A'}}</td>
                             <td>Statut</td>
                             <td>En vie</td>
                         </tr>
@@ -146,15 +146,15 @@
                         </tr>
                         <tr>
                             <td>Adresse complète</td>
-                            <td colspan="3">Avenue des Banques, Immeuble A, Kinshasa</td>
+                            <td colspan="3">{{ $employee->Address->city}}</td>
                         </tr>
                         <tr>
                             <td>Emploi / Poste</td>
-                            <td colspan="3">Comptable</td>
+                            <td colspan="3">{{ $employee->Company->job_title ?? 'N/A' }}</td>
                         </tr>
                         <tr>
-                            <td>Classification*</td>
-                            <td>Finance</td>
+                            <td>Classification;</td>
+                            <td>{{ $employee->Company->department ?? 'N/A' }}</td>
                             <td>Position</td>
                             <td>Senior</td>
                         </tr>
@@ -162,7 +162,7 @@
                             <td>Niveau</td>
                             <td>2</td>
                             <td>Coefficient</td>
-                            <td>$ 1200.00</td>
+                            <td>{{ number_format($employee->salaries->base_salary,2 ?? 'N/A' ) }}</td>
                         </tr>
                         <tr>
                             <td>Échelon</td>
@@ -180,11 +180,11 @@
                             <td>Date d'embauche</td>
                             <td>01 Jan 2020</td>
                             <td>Numéro matricule</td>
-                            <td>EMP001</td>
+                            <td>{{ $employee->employee_id }}</td>
                         </tr>
                         <tr>
                             <td>Type de contrat</td>
-                            <td>CDI</td>
+                            <td>{{ $employee->Company->contract_type ?? 'N/A'}}</td>
                             <td>Situation avant embauche</td>
                             <td>Étudiant</td>
                         </tr>

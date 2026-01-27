@@ -19,6 +19,9 @@ class Employee extends Model
         'child_full_name',
         'full_name',
     ];
+    public function getAgeAttribute(){
+        return \Carbon\Carbon::parse($this->date_of_birth)->age;
+    }
 
     public function address()
     {
